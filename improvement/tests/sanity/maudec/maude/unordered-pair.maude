@@ -1,0 +1,17 @@
+mod UNORDERED-PAIR is
+	protecting NAT .
+
+	sort Pair .
+
+	op {_,_} : Nat Nat -> Pair [ctor comm] .	
+
+	ops ex1 ex2 : -> Pair .
+	op ex3 : Nat Nat -> Pair .
+
+	eq ex1 = {2, 1} .
+	eq ex2 = {1, 2} .
+
+	var N M : Nat .
+
+	eq ex3(N, M) = {N + M, N * M} .
+endm

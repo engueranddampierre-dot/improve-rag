@@ -1,0 +1,11 @@
+mod COLLATZ is
+	protecting NAT .
+
+	*** Collatz conjecture
+	*** (no one has proven that this sequence is always terminating)
+
+	var N : Nat .
+
+	crl N => N quo 2 if N rem 2 = 0 .
+	crl N => 3 * N + 1 if N rem 2 = 1 .
+endm

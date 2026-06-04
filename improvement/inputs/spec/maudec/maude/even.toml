@@ -1,7 +1,7 @@
 [even1]
-signature = ['nat']
+signature = [{type = 'nat', max = 100}]
 examples = [[0], [1], [2], [7], [10]]
 
 [even2]
-signature = ['nat']
+signature = [{type = 'nat', max = 100}]
 examples = [[0], [1], [2], [7], [10]]

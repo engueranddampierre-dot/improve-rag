@@ -1,15 +1,15 @@
 [fib]
-signature = ['nat']
+signature = [{type = 'nat', max = 25}]
 examples = [[0], [1], [2], [10], [15]]
 
 ["$gcd"]
-signature = ['nat', 'nat']
+signature = [{type = 'nat', max = 1000}, {type = 'nat', max = 1000}]
 examples = [[12, 8], [0, 5], [17, 5]]
 
 [even1]
-signature = ['nat']
+signature = [{type = 'nat', max = 100}]
 examples = [[0], [1], [2], [7]]
 
 [even2]
-signature = ['nat']
+signature = [{type = 'nat', max = 100}]
 examples = [[0], [1], [2], [7]]

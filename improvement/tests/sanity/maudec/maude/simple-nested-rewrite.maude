@@ -1,0 +1,10 @@
+mod NESTED-REWRITE-TEST is
+	sort Foo Bar Ter .
+
+	op f : Bar Foo -> Foo [ctor] .
+	ops a b c : -> Bar [ctor] .
+	op g : Bar -> Ter [ctor frozen (1)] .
+
+	rl [ab] : a => b .
+	rl [bc] : b => c .
+endm

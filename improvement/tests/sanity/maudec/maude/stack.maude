@@ -1,0 +1,25 @@
+fmod STACK{X :: TRIV} is
+
+ sort Stack{X} .
+
+ op mt : -> Stack{X} [ctor] .
+ op push : X$Elt Stack{X} -> Stack{X} [ctor] .
+
+ var S : Stack{X} .
+ var E : X$Elt .
+
+ op pop : Stack{X} -> Stack{X} .
+ eq pop(mt) = mt .
+ eq pop(push(E, S)) = S .
+
+ op top : Stack{X} ~> X$Elt .
+ eq top(push(E, S)) = E .
+
+ op empty? : Stack{X} -> Bool .
+ eq empty?(mt) = true .
+ eq empty?(S) = false [owise] .
+endfm
+
+fmod NAT-STACK is
+ pr STACK{Nat} .
+endfm

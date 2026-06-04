@@ -1,0 +1,7 @@
+[and]
+signature = ['bool', 'bool']
+examples = [[true, false], [true, true], [false, false], [false, true]]
+
+[andc]
+signature = ['bool', 'bool']
+examples = [[true, false], [true, true], [false, false], [false, true]]

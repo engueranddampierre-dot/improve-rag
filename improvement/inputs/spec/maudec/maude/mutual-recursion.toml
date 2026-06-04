@@ -1,7 +1,7 @@
 [f]
-signature = ['nat']
+signature = [{ type = "nat", max = 20 }]
 examples = [[0], [1], [2], [5], [10]]
 
 [g]
-signature = ['nat']
+signature = [{ type = "nat", max = 20 }]
 examples = [[0], [1], [2], [5], [10]]

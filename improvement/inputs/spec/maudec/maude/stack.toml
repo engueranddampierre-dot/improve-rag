@@ -1,5 +1,5 @@
 [pop]
 examples = [["push(1, push(2, mt))"], ["mt"], ["push(5, mt)"]]
 
-[empty?]
+["empty?"]
 examples = [["mt"], ["push(1, mt)"]]
