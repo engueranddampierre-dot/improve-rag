@@ -2,7 +2,7 @@ I. Code_embedding_local
 
 You can find in Code_embedding_local the Retrieved Augmented Generation model
 
-You first need read "environment.txt", then "requirements.txt" (read it!), then install them
+You first need to read "environment.txt", then "requirements.txt" (read it!), then install them
 Then start Qdrant with docker
 
 Then use index_html.py to create a Qdrant Collection
