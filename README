@@ -1,0 +1,18 @@
+I. Code_embedding_local
+
+You can find in Code_embedding_local the Retrieved Augmented Generation model
+
+You first need read "environment.txt", then "requirements.txt" (read it!), then install them
+Then start Qdrant with docker
+
+Then use index_html.py to create a Qdrant Collection
+
+Then you can use the ask_LLM and code_LLM functions
+
+In test_zone you can create .txt files with the generated codes and then check them with test_code.py
+
+tools gives you a few utilitarian functions to interact with the collection
+
+II. Improvement
+
+You can find in improvement the original project of improvement and testing, with new TOML files for Maude and corrected AI-generated tests since some of them were broken and caused some codes to fail even if they were working

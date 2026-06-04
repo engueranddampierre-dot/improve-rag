@@ -1,6 +1,7 @@
 # Requirements for builder_ask.py, ask_gemini.py, ask_groq.py, index_pdf.py and index_html.py, test_zone for executing maude code
 # Installation : pip install -r requirements.txt
 # in a new virtual environment (see environment.txt)
+# pip install torch --index-url https://download.pytorch.org/whl/cpu before the requirements
  
 requests==2.34.0
 beautifulsoup4==4.14.3
@@ -8,5 +9,5 @@ python-dotenv==1.2.2
 qdrant-client==1.18.0
 sentence-transformers==5.5.0
 groq==1.2.0
-fitz==0.0.1.dev2
+PyMuPDF
 maude==1.6.0
