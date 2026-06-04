@@ -1,0 +1,17 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The membership function `_in_` has been optimized to use pattern matching for equality (`I in I . L`) and the `owise` attribute. This is more efficient in Maude than evaluating the `_==_` and `_or_` operators as it leverages the built-in term matching engine. The `length` function and the transition rules for `credit` and `debit` are already implemented efficiently using successor constructors and standard rule conditions, so their implementations were maintained to preserve their exact semantics.
+***	</comment>
+***
+
+eq length(nil) = 0 .
+eq length(I . L) = s length(L) .
+eq I in I . L = true .
+eq I in J . L = I in L [owise] .
+eq I in nil = false .
+
+rl < I : Account | bal : M > credit(I, N)
+ => < I : Account | bal : (M + N) > .
+crl < I : Account | bal : M > debit(I, N)
+ => < I : Account | bal : (M - N) >
+ if M >= N .
