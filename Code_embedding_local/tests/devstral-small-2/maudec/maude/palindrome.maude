@@ -1,0 +1,18 @@
+***
+***	<comment from="devstral-small-2">
+***	The original code is already quite efficient and concise for checking if a list is a palindrome. However, we can make a few minor improvements to simplify the logic and make it slightly more readable without changing the semantics. Here's the improved version:
+***	</comment>
+***
+
+fmod PALINDROME is
+	sorts Symbol List . subsort Symbol < List .
+	ops a e i o u : -> Symbol [ctor] .
+	op nil : -> List [ctor] .
+	op __ : List List -> List [ctor assoc id: nil] .
+	op palindrome : List -> Bool .
+	vars S S1 S2 : Symbol . var L : List .
+	eq palindrome(nil) = true .
+	eq palindrome(S) = true .
+	eq palindrome(S L S) = palindrome(L) .
+	eq palindrome(S1 L S2) = (S1 == S2) and palindrome(L) [owise] .
+endfm

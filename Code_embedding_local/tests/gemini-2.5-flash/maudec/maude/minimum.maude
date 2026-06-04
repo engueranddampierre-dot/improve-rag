@@ -1,0 +1,14 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	Your provided Maude code is already quite efficient and simplified for the task. The use of the `[comm]` attribute is key to this simplification, as it allows you to define the `minimum` function with just one conditional equation. Without `[comm]`, you would typically need two conditional equations (e.g., one for `M <= N` and another for `N < M`). The `_<=_` operator on `Nat` (Maude's built-in natural numbers) is also highly optimized.
+***
+***	The only minor improvement, for formal correctness rather than efficiency, is to use `extending NAT` instead of `protecting NAT`, as you are adding a new operator to the functionality provided by `NAT`.
+***	</comment>
+***
+
+fmod MINIMUM is
+	extending NAT .
+	op minimum : Nat Nat -> Nat [comm] .
+	vars M N : Nat .
+	ceq minimum(M, N) = M if M <= N .
+endfm

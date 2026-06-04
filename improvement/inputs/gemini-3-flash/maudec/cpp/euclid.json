@@ -1,0 +1,1 @@
+{"comment": "The following tests cover the base case where N is 0, cases where M is less than N, cases with coprime numbers, and the case where both inputs are zero.", "tests": ["u0024gcd(10, 0)", "u0024gcd(0, 10)", "u0024gcd(12, 18)", "u0024gcd(18, 12)", "u0024gcd(7, 5)", "u0024gcd(1, 1)", "u0024gcd(0, 0)"]}

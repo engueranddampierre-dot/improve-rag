@@ -1,0 +1,19 @@
+fmod MAIN is
+	sorts Symbol List .
+	subsort Symbol < List .
+	
+	ops a e i o u : -> Symbol [ctor] .
+
+	op nil : -> List [ctor] .
+	op __ : List List -> List [ctor assoc id: nil] .
+
+	op f : List -> Bool .
+
+	vars S S1 S2 : Symbol .
+	var  L     : List .
+
+	eq f(nil) = true .
+	eq f(S) = true .
+	eq f(S1 L S2) = S1 == S2 and f(L) .
+
+endfm

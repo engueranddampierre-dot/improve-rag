@@ -1,0 +1,16 @@
+***
+***	<comment from="devstral-small-2">
+***	The original code defines two mutually recursive functions f and g over natural numbers. The current implementation is already quite efficient, but we can simplify the code by removing the redundant variable declaration and making the equations more concise. Here's the improved version:
+***	</comment>
+***
+
+fmod MUTUAL is
+	protecting NAT .
+
+	ops f g : Nat -> Nat .
+
+	eq f(0) = 1 .
+	eq f(s N) = 2 + g(N) .
+
+	eq g(N) = 1 + f(N) .
+endfm

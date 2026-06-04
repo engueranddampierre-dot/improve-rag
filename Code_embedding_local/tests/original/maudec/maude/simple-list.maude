@@ -1,0 +1,19 @@
+fmod SIMPLE-LIST is
+	protecting NAT .
+
+	sorts Letter List .
+	subsort Letter < List .
+
+	ops a b c d : -> Letter [ctor] .
+
+	op nil : -> List [ctor] .
+	op __ : List List -> List [ctor assoc id: nil] .
+
+	op length : List -> Nat .
+
+	var E : Letter .
+	var L : List .
+
+	eq length(nil) = 0 .
+	eq length(E L) = s length(L) .
+endfm

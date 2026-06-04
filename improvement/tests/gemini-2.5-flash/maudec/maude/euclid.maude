@@ -1,0 +1,18 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The provided code already implements the classic Euclidean algorithm, which is highly efficient and optimal for calculating the greatest common divisor. Therefore, no significant algorithmic efficiency improvements are possible without altering the fundamental algorithm.
+***
+***	A minor simplification can be made by removing the `[owise]` attribute from the second equation. In this specific case, Maude's default equation application order ensures that the equation `eq $gcd(M, 0) = M` will always be applied first when `N` is `0`. If `N` is not `0`, the first equation does not apply, and the second one (without `[owise]`) will correctly take effect. Thus, `[owise]` is redundant here and can be removed for conciseness without changing the semantics or efficiency.
+***	</comment>
+***
+
+fmod EUCLIDEAN is
+	protecting NAT .
+
+	op $gcd : Nat Nat -> Nat .
+
+	vars N M : Nat .
+
+	eq $gcd(M, 0) = M .
+	eq $gcd(M, N) = $gcd(N, M rem N) .
+endfm

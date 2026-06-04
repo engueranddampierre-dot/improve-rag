@@ -1,0 +1,28 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The original implementation of the `normalize` function was inefficient because it recalculated the vector's norm up to three times for every call where the norm was non-zero. I have optimized the code by introducing a conditional equation (`ceq`) that binds the result of `norm(< X, Y >)` to a variable `N` using a matching condition (`if N := ...`). This ensures the square root and arithmetic operations within the norm calculation are performed only once per normalization, significantly improving performance while preserving the original signatures and semantics.
+***	</comment>
+***
+
+fmod REPEATED is
+  protecting FLOAT .
+
+  sort Vector .
+
+  op <_,_> : Float Float -> Vector [ctor] .
+
+  op norm : Vector -> Float .
+  op normalize : Vector -> Vector .
+
+  vars X Y N : Float .
+
+  eq norm(< X, Y >) = sqrt(X * X + Y * Y) .
+
+  ceq normalize(< X, Y >) =
+    if N =/= 0.0 then
+      < X / N, Y / N >
+    else
+      < X, Y >
+    fi
+    if N := norm(< X, Y >) .
+endfm

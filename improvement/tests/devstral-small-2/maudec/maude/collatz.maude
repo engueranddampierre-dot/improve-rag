@@ -1,0 +1,17 @@
+***
+***	<comment from="devstral-small-2">
+***	The original Maude code defines a module COLLATZ that implements the Collatz conjecture using conditional rewrite rules. The code is already quite efficient and concise, but there are a few minor improvements that can be made to enhance readability and maintain the same semantics.
+***	</comment>
+***
+
+mod COLLATZ is
+	protecting NAT .
+
+	*** Collatz conjecture
+	*** (no one has proven that this sequence is always terminating)
+
+	var N : Nat .
+
+	crl [even] N => N quo 2 [owise] if N rem 2 = 0 .
+	crl [odd] N => 3 * N + 1 [owise] if N rem 2 = 1 .
+endm

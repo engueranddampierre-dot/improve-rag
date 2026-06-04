@@ -1,0 +1,44 @@
+fmod PEANO-INTEGERS is
+  protecting NAT .
+
+  sort Int .
+  *** Constructor for integers as pairs of natural numbers (positive, negative)
+  op int : Nat Nat -> Int [ctor] .
+
+  vars N M N1 M1 N2 M2 : Nat .
+  vars I I1 I2 : Int .
+
+  *** Normalization equation: (p, n) = (p-k, n-k)
+  *** This ensures that, for example, int(s 0, s 0) reduces to int(0, 0).
+  eq int(s N, s M) = int(N, M) .
+
+  *** Definition of Zero for integers
+  op 0 : -> Int .
+  eq 0 = int(0,0) .
+
+  *** Definition of Successor for integers
+  op s_ : Int -> Int .
+  eq s int(N, M) = int(s N, M) .
+
+  *** Definition of Predecessor for integers
+  op p_ : Int -> Int .
+  eq p int(N, M) = int(N, s M) .
+
+  *** Properties of successor and predecessor (for verification, not execution)
+  *** These equations demonstrate that s_ and p_ are inverses.
+  eq s (p I) = I [nonexec] .
+  eq p (s I) = I [nonexec] .
+
+  *** Addition of integers
+  op _+_ : Int Int -> Int .
+  eq int(N1, M1) + int(N2, M2) = int(N1 + N2, M1 + M2) .
+
+  *** Negation of an integer
+  op -_ : Int -> Int .
+  eq - int(N, M) = int(M, N) .
+
+  *** Subtraction of integers
+  op _-_ : Int Int -> Int .
+  eq I1 - I2 = I1 + (- I2) .
+
+endfm

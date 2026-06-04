@@ -1,0 +1,37 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	I have simplified and improved the efficiency of your Maude code by removing the `nat2float` operation and its associated recursive equations. The `FLOAT` module, which you are protecting, typically provides a built-in operator `float_ : Int -> Float` for converting integers to floats. Leveraging this built-in functionality makes the code more concise, significantly more efficient (as it avoids repeated additions for large numbers), and correctly handles all `Int` values (including negative ones, which `nat2float` wouldn't have naturally covered without further definition).
+***	</comment>
+***
+
+fmod WRAPPERS is
+	protecting INT .
+	protecting FLOAT .
+
+	sort Foo .
+
+	op int : Int -> Foo [ctor] .
+	op float : Float -> Foo [ctor] .
+
+	op square : Foo -> Foo .
+	op isFloat : Foo -> Bool .
+	op getFloat : Foo ~> Float .
+	op add : Foo Foo -> Foo .
+
+	vars N N1 N2 : Int .
+	vars F F1 F2 : Float .
+	var  O : Foo .
+
+	eq square(int(N)) = int(N * N) .
+	eq square(float(F)) = float(F * F) .
+
+	eq isFloat(float(F)) = true .
+	eq isFloat(O) = false [owise] .
+
+	eq getFloat(float(F)) = F .
+
+	eq add(int(N1), int(N2)) = int(N1 + N2) .
+	eq add(float(F1), float(F2)) = float(F1 + F2) .
+	eq add(int(N1), float(F2)) = float(float(N1) + F2) .
+	eq add(float(F1), int(N2)) = float(F1 + float(N2)) .
+endfm

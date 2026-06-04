@@ -1,0 +1,8 @@
+extra.diff_fix = """
+bool operator!=(const std::optional<a::Foo>& af, const std::optional<b::Foo>& bf)
+{
+	if (bool(af) != bool(bf)) return true;
+	if (!af) return false;
+	return *af != *bf;
+}
+"""

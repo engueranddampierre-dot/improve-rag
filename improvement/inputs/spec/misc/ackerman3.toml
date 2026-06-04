@@ -1,0 +1,3 @@
+[f]
+signature = [{type = 'nat', max = 2}, {type = 'nat', max = 15}]
+examples = [[0, 0], [1, 0], [0, 1]]

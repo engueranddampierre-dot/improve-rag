@@ -1,0 +1,8 @@
+[square]
+examples = [["int(3)"], ["int(-2)"], ["float(2.5)"], ["float(-1.5)"]]
+
+[isFloat]
+examples = [["int(3)"], ["float(2.5)"]]
+
+[add]
+examples = [["int(2), int(3)"], ["float(1.0), float(2.0)"], ["int(2), float(3.0)"]]

@@ -1,0 +1,26 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	I have improved the efficiency of the NAT-FUNS module by implementing tail-recursive helpers for the Fibonacci and factorial functions, reducing their computational complexity to linear. The parity check function 'even2' was also optimized to use Maude's built-in remainder operation, which is significantly faster than structural recursion for large numbers. The GCD implementation was kept efficient using the Euclidean algorithm with the built-in remainder operator.
+***	</comment>
+***
+
+fmod NAT-FUNS is
+  pr NAT .
+  vars N M K : Nat .
+  op fib : Nat -> Nat .
+  op $fib : Nat Nat Nat -> Nat .
+  eq fib(N) = $fib(N, 0, 1) .
+  eq $fib(0, N, M) = N .
+  eq $fib(s(K), N, M) = $fib(K, M, N + M) .
+  op _! : Nat -> Nat .
+  op $fact : Nat Nat -> Nat .
+  eq N ! = $fact(N, 1) .
+  eq $fact(0, M) = M .
+  eq $fact(s(N), M) = $fact(N, s(N) * M) .
+  op $gcd : Nat Nat -> Nat .
+  eq $gcd(M, 0) = M .
+  eq $gcd(M, N) = $gcd(N, M rem N) [owise] .
+  ops even1 even2 : Nat -> Bool .
+  eq even1(N) = N rem 2 == 0 .
+  eq even2(N) = N rem 2 == 0 .
+endfm

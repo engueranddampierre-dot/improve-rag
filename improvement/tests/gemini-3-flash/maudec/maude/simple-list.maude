@@ -1,0 +1,19 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The original code was already quite efficient because the use of the subsort 'Letter' in the 'E L' pattern allows Maude to match the head of the list in O(1) time per step, leading to O(N) total complexity for 'length'. I have simplified the code by using the 'pr' shorthand for 'protecting', grouping the 'Letter' constants, and ensuring the recursive implementation is concise while maintaining the original semantics and signatures.
+***	</comment>
+***
+
+fmod SIMPLE-LIST is
+  pr NAT .
+  sorts Letter List .
+  subsort Letter < List .
+  ops a b c d : -> Letter [ctor] .
+  op nil : -> List [ctor] .
+  op __ : List List -> List [ctor assoc id: nil] .
+  op length : List -> Nat .
+  var E : Letter .
+  var L : List .
+  eq length(nil) = 0 .
+  eq length(E L) = s length(L) .
+endfm

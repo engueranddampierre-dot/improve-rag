@@ -1,0 +1,16 @@
+fmod TRUTH-TABLE is
+	protecting BOOL .
+
+	op and : Bool Bool -> Bool .
+
+	eq and(true, true) = true .
+	eq and(true, false) = false .
+	eq and(false, true) = false .
+	eq and(false, false) = false .
+
+	op andc : Bool Bool -> Bool [comm] .
+
+	eq andc(true, true) = true .
+	eq andc(false, false) = false .
+	eq andc(true, false) = false .
+endfm

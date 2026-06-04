@@ -1,0 +1,9 @@
+extra.global_include = """
+#include <vector>
+"""
+
+extra.include = """
+bool squareRootv(std::vector<List> S) {
+	return squareRoot(S);
+}
+"""

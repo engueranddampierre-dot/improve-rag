@@ -1,0 +1,1 @@
+{"comment": "These test cases cover both the functional logic of even1 and even2, including base cases, recursive branches for even2, and the negative input branch that triggers a panic in even2.", "tests": ["even1(0)", "even1(2)", "even1(3)", "even1(-2)", "even1(-3)", "even2(0)", "even2(1)", "even2(2)", "even2(5)", "even2(4)"]}

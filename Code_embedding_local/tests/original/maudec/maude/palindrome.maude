@@ -1,0 +1,12 @@
+fmod PALINDROME is
+	sorts Symbol List . subsort Symbol < List .
+	ops a e i o u : -> Symbol [ctor] .
+	op nil : -> List [ctor] .
+	op __ : List List -> List [ctor assoc id: nil] .
+	op palindrome : List -> Bool .
+	vars S S1 S2 : Symbol . var L : List .
+	eq palindrome(nil) = true . eq palindrome(S) = true .
+	eq palindrome(S L S) = palindrome(L) .
+	eq palindrome(S1 L S2) = false [owise] .
+endfm
+

@@ -1,0 +1,1 @@
+{"comment": "The provided test cases cover all branches of the mutual recursion between f and g, including the base case f(0), the recursive step n >= 1, and the panic branch for negative values [manually removed].", "tests": ["f(0)", "f(1)", "f(10)", "g(0)", "g(5)", "f(2)"]}

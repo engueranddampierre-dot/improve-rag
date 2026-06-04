@@ -1,0 +1,9 @@
+extra.global_include = """
+#include <vector>
+"""
+
+extra.include = """
+int lengthv(std::vector<List> S) {
+	return length(S);
+}
+"""

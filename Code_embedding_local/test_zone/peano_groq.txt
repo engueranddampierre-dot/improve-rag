@@ -1,0 +1,32 @@
+fmod PEANO-INT is
+  protecting BOOL .
+  sorts Zero NzNat Nat .
+  subsort Zero NzNat < Nat .
+  *** constructors
+  op 0 : -> Zero [ctor] .
+  op s_ : Nat -> NzNat [ctor iter special (...)] .
+  op p_ : Nat -> NzNat [ctor iter special (...)] .
+
+  *** successor and predecessor functions
+  op s : Nat -> Nat .
+  eq s(0) = s 0 .
+  eq s(s N) = s (s N) .
+  eq s(p N) = p (s N) .
+
+  op p : Nat -> Nat .
+  eq p(0) = 0 .
+  eq p(s N) = s (p N) .
+  eq p(p N) = p (p N) .
+
+  *** addition
+  op _+_ : Nat Nat -> Nat .
+  eq 0 + N = N .
+  eq (s M) + N = s (M + N) .
+  eq (p M) + N = p (M + N) .
+
+  *** subtraction
+  op _-_ : Nat Nat -> Nat .
+  eq N - 0 = N .
+  eq N - (s M) = p (N - M) .
+  eq N - (p M) = s (N - M) .
+endfm

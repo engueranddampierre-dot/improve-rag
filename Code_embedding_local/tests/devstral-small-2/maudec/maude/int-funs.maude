@@ -1,0 +1,22 @@
+***
+***	<comment from="devstral-small-2">
+***	I'll analyze the Maude code and suggest improvements to simplify and improve efficiency while preserving semantics.
+***	</comment>
+***
+
+fmod INT-FUNS is
+ pr INT .
+
+ vars N M U1 V1 U2 V2 : Int .
+
+ *** Extended Euclidean algorithm
+ sort EuclidResult .
+ op euc : Int Int Int -> EuclidResult [ctor] .
+
+ op eeuclid : Int Int -> EuclidResult .
+ op eeuclid : Int Int Int Int Int Int -> EuclidResult .
+
+ eq eeuclid(M, N) = eeuclid(M, 1, 0, N, 0, 1) .
+ eq eeuclid(M, U1, V1, 0, U2, V2) = euc(M, U1, V1) .
+ eq eeuclid(M, U1, V1, N, U2, V2) = eeuclid(N, U2, V2, M - (M quo N) * N, U1 - (M quo N) * U2, V1 - (M quo N) * V2) .
+endfm

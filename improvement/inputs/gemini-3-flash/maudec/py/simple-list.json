@@ -1,0 +1,1 @@
+{"comment": "Test cases for the length function including empty lists, single-element lists, and multi-element lists of the List enum to ensure coverage of both match arms and recursive logic.", "tests": ["length([])", "length([List.A])", "length([List.B, List.C])", "length([List.A, List.B, List.C, List.D])", "length([List.D, List.D, List.D])"]}

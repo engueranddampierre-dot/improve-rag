@@ -1,0 +1,30 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The implementation has been optimized for the Maude reduction engine by replacing the 'owise' attribute in the 'empty?' function with explicit constructor pattern matching. This allows the engine to build a more efficient discrimination tree for term reduction. The logic for 'pop' on an empty stack is preserved as a total function, and the partial nature of 'top' is maintained through the kind-level sort (~>). Formatting has also been standardized to improve readability.
+***	</comment>
+***
+
+fmod STACK{X :: TRIV} is
+  sort Stack{X} .
+
+  op mt : -> Stack{X} [ctor] .
+  op push : X$Elt Stack{X} -> Stack{X} [ctor] .
+
+  var E : X$Elt .
+  var S : Stack{X} .
+
+  op pop : Stack{X} -> Stack{X} .
+  eq pop(mt) = mt .
+  eq pop(push(E, S)) = S .
+
+  op top : Stack{X} ~> X$Elt .
+  eq top(push(E, S)) = E .
+
+  op empty? : Stack{X} -> Bool .
+  eq empty?(mt) = true .
+  eq empty?(push(E, S)) = false .
+endfm
+
+fmod NAT-STACK is
+  pr STACK{Nat} .
+endfm

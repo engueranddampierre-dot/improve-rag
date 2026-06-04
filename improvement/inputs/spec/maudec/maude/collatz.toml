@@ -1,0 +1,7 @@
+[rlapp_Nat]
+signature = [{type = 'nat', max = 100000}]
+examples = [[0], [1], [2], [3]]
+
+[arlapp_Nat]
+signature = [{type = 'nat', max = 100000}]
+examples = [[0], [1], [2], [3]]

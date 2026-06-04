@@ -1,0 +1,1 @@
+{"comment": "Test cases covering all four truth table permutations for the 'and' operation and the three explicit cases plus commutativity for the 'andc' operation.", "tests": ["and(true, true)", "and(true, false)", "and(false, true)", "and(false, false)", "andc(true, true)", "andc(false, false)", "andc(true, false)", "andc(false, true)"]}

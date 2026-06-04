@@ -1,0 +1,30 @@
+***
+***	<comment from="gemma-3-27b-it">
+***
+***	**Explanation of Changes and Improvements:**
+***
+***	* **Removed `[owise]`:** The `[owise]` clause is redundant in this case.  The first equation `$gcd(M, 0) = M` already handles the base case.  Without `[owise]`, Maude will automatically try the equations in order.  If the first equation doesn't match, it will try the second.  This is the desired behavior for the Euclidean algorithm.  Removing `[owise]` makes the code cleaner and slightly more efficient because Maude doesn't need to consider the `owise` search strategy.
+***
+***	**Why this is more efficient:**
+***
+***	While the performance difference is likely small for typical inputs, removing `[owise]` can lead to a slight improvement in efficiency.  `[owise]` forces Maude to consider all equations even if a match is found earlier.  Without it, Maude stops searching as soon as a matching equation is found.  In this specific case, the order of equations is crucial for the algorithm's correctness, and the default equation search order is sufficient.
+***
+***	**Preservation of Semantics:**
+***
+***	The simplified code preserves the semantics of the original code.  It still correctly implements the Euclidean algorithm for finding the greatest common divisor of two natural numbers.  The base case (second argument is 0) and the recursive step (using the remainder) remain the same.
+***
+***	</comment>
+***
+
+***
+*** Euclidean algorithm
+***
+
+fmod EUCLIDEAN is
+	protecting NAT .
+
+	op $gcd : Nat Nat -> Nat .
+
+	eq $gcd(M, 0) = M .
+	eq $gcd(M, N) = $gcd(N, M rem N) .
+endfm

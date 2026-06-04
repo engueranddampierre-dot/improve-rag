@@ -1,0 +1,1 @@
+{"comment": "These tests cover the base case (empty slice) and the recursive case (slices with one or more elements) for the length function, ensuring all logic paths are exercised.", "tests": ["length(&[])", "length(&[List::A])", "length(&[List::A, List::B])", "length(&[List::A, List::B, List::C, List::D])"]}

@@ -1,0 +1,1 @@
+{"comment": "The tests cover all branches of the recursive function f (m=0, n=0, and general recursive case) as well as both branches of the max function (m < n and m >= n).", "tests": ["f(0, 0)", "f(0, 5)", "f(1, 0)", "f(1, 1)", "f(2, 0)", "f(2, 1)"]}

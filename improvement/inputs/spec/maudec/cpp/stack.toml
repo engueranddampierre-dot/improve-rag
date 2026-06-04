@@ -1,0 +1,13 @@
+extra.diff_fix = """
+bool operator!=(const a::Stacku007bNatu007d& as, const b::Stacku007bNatu007d& bs)
+{
+	if (as.index() != bs.index()) return true;
+	if (as.index() != 1) return false;
+	if (get<0>(get<1>(as)) != get<0>(get<1>(bs))) return true;
+	auto ap = get<1>(get<1>(as)).get();
+	auto bp = get<1>(get<1>(bs)).get();
+	if (reinterpret_cast<void*>(ap) == reinterpret_cast<void*>(bp)) return false;
+	if (ap == nullptr) return true;
+	return *ap != *bp;
+}
+"""

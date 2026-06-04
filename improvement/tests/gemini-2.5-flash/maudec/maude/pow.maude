@@ -1,0 +1,21 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The original code implements exponentiation with a linear number of multiplications with respect to the exponent. The improved version uses the 'exponentiation by squaring' algorithm, which reduces the number of multiplications to logarithmic time (O(log N)). This is achieved by:
+***	1. Handling the base case X^0 = 1.
+***	2. If the exponent N is even and greater than 0, computing X^N as (X^2)^(N/2).
+***	3. If the exponent N is odd, computing X^N as X * (X^2)^((N-1)/2).
+***	This approach leverages the `isEven`, `isOdd`, and `div` operations provided by the `NAT` module for efficiency and conciseness.
+***	</comment>
+***
+
+fmod MAIN is
+	protecting NAT .
+
+	op f : Nat Nat -> Nat .
+	
+	vars X N : Nat .
+
+	eq f(X, 0) = 1 .
+	eq f(X, N) = f(X * X, N div 2) if isEven(N) and N =/= 0 .
+	eq f(X, N) = X * f(X * X, N div 2) if isOdd(N) .
+endfm

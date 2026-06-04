@@ -1,0 +1,9 @@
+extra.global_include = """
+#include <vector>
+"""
+
+extra.include = """
+bool palindromev(std::vector<List> S) {
+	return palindrome(S);
+}
+"""

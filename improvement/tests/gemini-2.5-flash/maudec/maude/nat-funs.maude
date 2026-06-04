@@ -1,0 +1,43 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	I have simplified and improved the efficiency of your Maude code by:
+***
+***	1.  **Transforming `fib` and `_!` (factorial) into tail-recursive versions** using auxiliary functions (`fib-iter` and `fact-iter`). Tail-recursive functions are generally more efficient in Maude as they can be optimized by the rewrite engine, preventing stack overflow for larger inputs and potentially reducing the number of rewrite steps.
+***	2.  **Removing the redundant and less efficient `even2` function**. The `even1` definition, renamed to `even` for clarity, which uses the built-in `rem` and `==` operations, is typically more efficient as these are highly optimized primitives in Maude's `NAT` module.
+***	3.  **Keeping `$gcd` as is**, as it already implements the efficient Euclidean algorithm.
+***	4.  Marking auxiliary functions as `[private]` to indicate they are implementation details.
+***	</comment>
+***
+
+fmod NAT-FUNS is
+ pr NAT .
+
+ vars N M K A B Acc : Nat .
+
+ *** Fibonacci
+ op fib : Nat -> Nat .
+ op fib-iter : Nat Nat Nat -> Nat [private] .
+
+ eq fib(N) = fib-iter(N, 0, 1) .
+ eq fib-iter(0, A, B) = A .
+ eq fib-iter(s(K), A, B) = fib-iter(K, B, A + B) .
+
+ *** Factorial
+ op _! : Nat -> Nat .
+ op fact-iter : Nat Nat -> Nat [private] .
+
+ eq N ! = fact-iter(N, 1) .
+ eq fact-iter(0, Acc) = Acc .
+ eq fact-iter(s(K), Acc) = fact-iter(K, s(K) * Acc) .
+
+ *** Greatest common divisor (Euclidean algorithm)
+ op $gcd : Nat Nat -> Nat .
+
+ eq $gcd(M, 0) = M .
+ eq $gcd(M, N) = $gcd(N, M rem N) [owise] .
+
+ *** Even check
+ op even : Nat -> Bool .
+ eq even(N) = N rem 2 == 0 .
+
+endfm

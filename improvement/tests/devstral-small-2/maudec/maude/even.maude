@@ -1,0 +1,17 @@
+***
+***	<comment from="devstral-small-2">
+***	The original code defines two functions to check if a natural number is even: `even1` uses the modulo operator, while `even2` uses a recursive approach. The recursive approach is less efficient because it traverses the entire number representation (Peano-style) to reach the base case. We can improve `even2` by using the same logic as `even1` but keeping the recursive structure for educational purposes. However, since the goal is to improve efficiency while preserving semantics, we can optimize `even2` to use the same modulo-based approach as `even1` but keep the function signature intact.
+***	</comment>
+***
+
+fmod EVEN is
+	protecting BOOL .
+	protecting NAT .
+
+	ops even1 even2 : Nat -> Bool .
+
+	var N : Nat .
+
+	eq even1(N) = N rem 2 == 0 .
+	eq even2(N) = N rem 2 == 0 .
+endfm

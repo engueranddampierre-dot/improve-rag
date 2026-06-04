@@ -1,0 +1,13 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The mutual recursion between f and g is simplified into closed-form arithmetic expressions. By substituting the definition of g(N) into f(s N), we obtain the recurrence f(s N) = 3 + f(N). Given the base case f(0) = 1, this yields the direct formula f(N) = 3*N + 1. Consequently, g(N) = 1 + f(N) becomes g(N) = 3*N + 2. This transformation improves the computational efficiency from linear O(N) recursion to O(1) arithmetic calculation.
+***	</comment>
+***
+
+fmod MUTUAL is
+  protecting NAT .
+  ops f g : Nat -> Nat .
+  var N : Nat .
+  eq f(N) = (3 * N) + 1 .
+  eq g(N) = (3 * N) + 2 .
+endfm

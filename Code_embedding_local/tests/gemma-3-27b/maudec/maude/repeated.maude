@@ -1,0 +1,39 @@
+***
+***	<comment from="gemma-3-27b-it">
+***
+***	**Improvements and Explanation:**
+***
+***	* **Introduce a `let` binding:** The original code repeatedly calculates `norm(<X, Y>)` within the `if` condition and in the `then` branch. This is inefficient.  The improved code introduces a `let` binding `N = norm(<X, Y>)` to calculate the norm only once and store it in the variable `N`.  This value is then reused in both the condition and the calculation of the normalized vector.
+***
+***	* **Preserved Semantics:** The `let` binding doesn't change the result of the computation; it simply optimizes the order of evaluation.  The function signatures remain the same, ensuring compatibility.
+***
+***	**Why this is more efficient:**
+***
+***	Maude's evaluation strategy can lead to redundant computations if the same expression appears multiple times without being bound to a variable. By using `let`, we force Maude to evaluate `norm(<X, Y>)` only once, significantly improving performance, especially if `norm` is a complex calculation.  This is a common optimization technique in functional programming and applies well to Maude's equational programming paradigm.
+***
+***	</comment>
+***
+
+***
+*** Example with repeated subterms
+***
+
+fmod REPEATED is
+	protecting FLOAT .
+
+	sort Vector .
+
+	op <_,_> : Float Float -> Vector [ctor] .
+
+	op norm : Vector -> Float .
+	op normalize : Vector -> Vector .
+
+	eq norm(< X, Y >) = sqrt(X * X + Y * Y) .
+	eq normalize(< X, Y >) =
+		let N = norm(< X, Y >) in
+		if N =/= 0.0 then
+			< X / N, Y / N >
+		else
+			< X, Y >
+		fi .
+endfm

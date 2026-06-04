@@ -1,0 +1,1 @@
+{"comment": "Test cases covering base cases, inductive steps, and boundary conditions for fibonacci, factorial, gcd, and parity functions.", "tests": ["fib(0)", "fib(1)", "fib(5)", "0 !", "s(s(s(0))) !", "5 !", "$gcd(10, 0)", "$gcd(0, 10)", "$gcd(48, 18)", "$gcd(13, 7)", "even1(0)", "even1(1)", "even1(10)", "even1(11)", "even2(0)", "even2(1)", "even2(4)", "even2(5)"]}

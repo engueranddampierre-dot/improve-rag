@@ -1,0 +1,59 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The original Maude code is generally well-written and efficient for an algebraic specification. The main area for improvement is to introduce a generic `map` operation in the `STACK` module. This simplifies the definition of `incr` in `NAT2-STACK` by delegating the recursive traversal to the `map` function, thus improving modularity, reusability, and conciseness for similar stack-transformation operations.
+***
+***	Additionally, I've explicitly imported `NAT` in `NAT2-STACK` to ensure the `s` (successor) and `+` (addition) operators for `Nat` are properly defined and available.
+***	</comment>
+***
+
+fmod STACK{X :: TRIV} is
+  sort Stack{X} .
+
+  op mt : -> Stack{X} [ctor] .
+  op push : X$Elt Stack{X} -> Stack{X} [ctor] .
+
+  var S : Stack{X} .
+  var E : X$Elt .
+
+  op pop : Stack{X} -> Stack{X} .
+  eq pop(mt) = mt .
+  eq pop(push(E, S)) = S .
+
+  op top : Stack{X} ~> X$Elt .
+  eq top(push(E, S)) = E .
+
+  op empty? : Stack{X} -> Bool .
+  eq empty?(mt) = true .
+  eq empty?(S) = false [owise] .
+
+  *** Added: A generic map operation to apply a function to all elements in the stack.
+  op map : (X$Elt -> X$Elt) Stack{X} -> Stack{X} .
+  var F : X$Elt -> X$Elt .
+  eq map(F, mt) = mt .
+  eq map(F, push(E, S)) = push(F(E), map(F, S)) .
+endfm
+
+fmod NAT2-STACK is
+  pr STACK{Nat} .
+  pr NAT . *** Explicitly importing NAT for 's' and '+' operations.
+  
+  vars N M : Nat .
+  var  S   : Stack{Nat} .
+  
+  *** Increment the top, reusing the rest
+  op topIncr : Stack{Nat} -> Stack{Nat} .
+  
+  eq topIncr(mt) = mt .
+  eq topIncr(push(N, S)) = push(s N, S) .
+  
+  *** Increment all values - simplified by using the generic 'map' operation from STACK.
+  op incr : Stack{Nat} -> Stack{Nat} .
+  
+  eq incr(S) = map(s, S) . *** 's' refers to the successor operator from NAT.
+  
+  *** Merge top two values (if possible)
+  op merge : Stack{Nat} -> Stack{Nat} .
+  
+  eq merge(push(N, push(M, S))) = push(N + M, S) .
+  eq merge(S) = S [owise] .
+endfm

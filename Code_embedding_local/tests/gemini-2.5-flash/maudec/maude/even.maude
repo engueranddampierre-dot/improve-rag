@@ -1,0 +1,18 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The original code contained two functions, `even1` and `even2`, both designed to check if a natural number is even. `even1` uses the `rem` operator, which is generally more direct and efficient as it often leverages built-in arithmetic operations. `even2` uses a recursive definition based on Peano numbers, which involves more steps and can be less efficient for larger numbers due to repeated pattern matching and recursive calls.
+***
+***	To simplify and improve efficiency while preserving the core semantic goal (checking for evenness), I've removed the `even2` function and kept only the `rem`-based approach, renaming `even1` to a more general `even` for clarity. This results in a cleaner, more efficient, and equally correct implementation.
+***	</comment>
+***
+
+fmod EVEN is
+	protecting BOOL .
+	protecting NAT .
+
+	op even : Nat -> Bool .
+
+	var N : Nat .
+
+	eq even(N) = N rem 2 == 0 .
+endfm

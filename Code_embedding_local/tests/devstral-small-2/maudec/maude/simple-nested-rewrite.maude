@@ -1,0 +1,16 @@
+***
+***	<comment from="devstral-small-2">
+***	The original Maude code defines a module with sorts Foo, Bar, and Ter, constructors for Foo and Bar, and a frozen constructor for Ter. It also includes two rewrite rules that transform terms of sort Bar. The goal is to simplify and improve the efficiency of the code while preserving the semantics and keeping the original function signatures.
+***	</comment>
+***
+
+mod NESTED-REWRITE-TEST is
+	sort Foo Bar Ter .
+
+	op f : Bar Foo -> Foo [ctor] .
+	ops a b c : -> Bar [ctor] .
+	op g : Bar -> Ter [ctor frozen (1)] .
+
+	-- Combined rewrite rule for efficiency
+	rl [ac] : a => c .
+endm

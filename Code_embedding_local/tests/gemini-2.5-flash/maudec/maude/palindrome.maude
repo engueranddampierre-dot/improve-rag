@@ -1,0 +1,18 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The provided Maude code is already very efficient and concise for defining a palindrome predicate. The use of pattern matching, especially `S L S` to compare first and last elements and `[owise]` for the default non-palindrome case, is the standard and most performant way to implement this in Maude. The base cases for `nil` and a single `Symbol` are correctly handled. No further simplification or efficiency improvement can be made without altering the clarity or performance negatively (e.g., using a `reverse` function would be less efficient).
+***	</comment>
+***
+
+fmod PALINDROME is
+	sorts Symbol List . subsort Symbol < List .
+	ops a e i o u : -> Symbol [ctor] .
+	op nil : -> List [ctor] .
+	op __ : List List -> List [ctor assoc id: nil] .
+	op palindrome : List -> Bool .
+	vars S S1 S2 : Symbol . var L : List .
+	eq palindrome(nil) = true .
+	eq palindrome(S) = true .
+	eq palindrome(S L S) = palindrome(L) .
+	eq palindrome(S1 L S2) = false [owise] .
+endfm

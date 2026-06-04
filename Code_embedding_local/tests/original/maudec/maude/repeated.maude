@@ -1,0 +1,24 @@
+***
+*** Example with repeated subterms
+***
+
+fmod REPEATED is
+	protecting FLOAT .
+
+	sort Vector .
+
+	op <_,_> : Float Float -> Vector [ctor] .
+
+	op norm : Vector -> Float .
+	op normalize : Vector -> Vector .
+
+	vars X Y : Float .
+
+	eq norm(< X, Y >) = sqrt(X * X + Y * Y) .
+	eq normalize(< X, Y >) =
+		if norm(< X, Y >) =/= 0.0 then
+			< X / norm(< X, Y >), Y / norm(< X, Y >) >
+		else
+			< X, Y >
+		fi .
+endfm

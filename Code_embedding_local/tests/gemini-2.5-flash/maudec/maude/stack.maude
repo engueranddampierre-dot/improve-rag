@@ -1,0 +1,33 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	Your original Maude code for the `STACK` module was already well-structured, efficient, and followed common Maude idioms. The main operations (`pop`, `top`, `empty?`) are defined directly on the constructors (`mt`, `push`), which ensures optimal performance (constant time).
+***
+***	The only minor improvement in terms of explicitness, rather than efficiency (which was already optimal), is to replace the `[owise]` rule for `empty?` with an explicit pattern match on the `push` constructor. This makes the definition of `empty?` fully explicit for both stack constructors, which can sometimes enhance clarity for those less familiar with the `owise` attribute, without altering semantics or performance.
+***	</comment>
+***
+
+fmod STACK{X :: TRIV} is
+
+ sort Stack{X} .
+
+ op mt : -> Stack{X} [ctor] .
+ op push : X$Elt Stack{X} -> Stack{X} [ctor] .
+
+ var S : Stack{X} .
+ var E : X$Elt .
+
+ op pop : Stack{X} -> Stack{X} .
+ eq pop(mt) = mt .
+ eq pop(push(E, S)) = S .
+
+ op top : Stack{X} ~> X$Elt .
+ eq top(push(E, S)) = E .
+
+ op empty? : Stack{X} -> Bool .
+ eq empty?(mt) = true .
+ eq empty?(push(E, S)) = false .
+endfm
+
+fmod NAT-STACK is
+ pr STACK{Nat} .
+endfm

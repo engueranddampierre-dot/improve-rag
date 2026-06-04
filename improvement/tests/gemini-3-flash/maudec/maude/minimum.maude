@@ -1,0 +1,15 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The implementation is simplified by replacing the conditional equation (ceq) with an unconditional equation using an 'if-then-else' expression. This improves efficiency in Maude because unconditional equations are generally faster to process; the 'if' construct allows the result to be determined in a single comparison regardless of which commutative permutation the engine provides, avoiding the potential overhead and backtracking logic involved in evaluating conditions in conditional rules.
+***	</comment>
+***
+
+fmod MINIMUM is
+	protecting NAT .
+
+	op minimum : Nat Nat -> Nat [comm] .
+
+	vars M N : Nat .
+
+	eq minimum(M, N) = if M <= N then M else N fi .
+endfm

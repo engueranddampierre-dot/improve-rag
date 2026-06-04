@@ -1,0 +1,1 @@
+{"comment": "These tests cover sort membership checks, subsort polymorphism, the 'owise' attribute for conditional pattern matching, and built-in Int subsorts like NzNat.", "tests": ["isFoo1(f)", "isFoo1(g)", "isFoo2(f)", "isFoo2(g)", "isPositive(10)", "isPositive(0)", "isPositive(-5)"]}

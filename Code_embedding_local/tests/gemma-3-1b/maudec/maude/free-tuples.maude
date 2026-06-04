@@ -1,0 +1,40 @@
+***
+***	<comment from="gemma-3-1b-it">
+***
+***	**Explanation of Changes and Improvements:**
+***
+***	* **Removed unnecessary comments:** The original comments were redundant and didn't add value.  The code itself is self-explanatory.
+***	* **Simplified `op` definition:** The `op` definition is already quite concise.  It directly reflects the function's purpose.
+***	* **Consistent Formatting:**  I've ensured consistent indentation and spacing for readability.
+***
+***	**Why these changes are efficient:**
+***
+***	* **Reduced Redundancy:** The original code had redundant comments.  Removing them streamlines the code and makes it easier to understand.
+***	* **Directness:** The `op` definition is the most efficient way to express the function's behavior.  It avoids unnecessary verbosity.
+***	* **Readability:**  The simplified code is easier to read and maintain.
+***
+***	**Important Considerations (and why this is a *minimal* improvement):**
+***
+***	* **Type Safety:**  The original code's type signatures are very specific.  The simplified version doesn't change the type safety.  If you need to be more flexible, you'd need to adjust the type signatures accordingly.
+***	* **No Performance Boost:**  The changes don't fundamentally change the performance of the code.  The core logic remains the same.  The focus is on making the code more readable and maintainable.
+***
+***	This revised version is functionally equivalent to the original while being more concise and easier to understand.  It's a good example of how to improve code quality without sacrificing its core purpose.
+***
+***	</comment>
+***
+
+fmod TUPLES is
+  protecting FLOAT .
+  sort Foo .
+  op f : Float Float -> Foo [ctor] .
+  op g : Float Float Bool -> Foo [ctor] .
+  op h : Float Bool Float Bool -> Foo [ctor] .
+
+  op first : Foo -> Float .
+  vars F1 F2 : Float .
+  vars B1 B2 : Bool .
+
+  eq first(f(F1, F2)) = F1 .
+  eq first(g(F1, F2, B1)) = F1 .
+  eq first(h(F1, B1, F2, B2)) = F1 .
+endfm

@@ -1,0 +1,36 @@
+***
+***	<comment from="gemma-3-4b-it">
+***
+***	**Explanation of Changes and Improvements:**
+***
+***	The original code was already quite concise and efficient for what it does.  It simply defines the truth tables for the `and` and `andc` logical operators.  There's no real opportunity for significant simplification or efficiency improvement *without* changing the semantics.
+***
+***	* **No Changes Needed:** The provided code is already optimal in terms of readability and efficiency for its intended purpose.  It directly implements the truth tables.
+***
+***	**Why this is good:**
+***
+***	* **Readability:** The code is very clear and easy to understand.  The `eq` clauses directly state the truth values for each combination of inputs.
+***	* **Efficiency:**  Maude's `eq` clauses are evaluated directly, so there's no overhead.  The code is as efficient as it can be for this task.
+***	* **Preserves Semantics:** The code accurately represents the logical behavior of the `and` and `andc` operators.
+***
+***	**In summary, the original code was already well-written and efficient.  No changes were necessary.**
+***
+***	</comment>
+***
+
+fmod TRUTH-TABLE is
+	protecting BOOL .
+
+	op and : Bool Bool -> Bool .
+
+	eq and(true, true) = true .
+	eq and(true, false) = false .
+	eq and(false, true) = false .
+	eq and(false, false) = false .
+
+	op andc : Bool Bool -> Bool [comm] .
+
+	eq andc(true, true) = true .
+	eq andc(false, false) = false .
+	eq andc(true, false) = false .
+endfm

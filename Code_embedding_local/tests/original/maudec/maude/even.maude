@@ -1,0 +1,13 @@
+fmod EVEN is
+	protecting BOOL .
+	protecting NAT .
+
+	ops even1 even2 : Nat -> Bool .
+
+	var N : Nat .
+
+	eq even1(N) = N rem 2 == 0 .
+	eq even2(0) = true .
+	eq even2(1) = false .
+	eq even2(s s N) = even2(N) .
+endfm

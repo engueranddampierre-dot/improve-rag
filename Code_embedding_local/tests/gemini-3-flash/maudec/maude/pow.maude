@@ -1,0 +1,15 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The implementation has been optimized by replacing the O(N) linear recursion with the built-in exponentiation operator `^` from the Maude standard library. This operator utilizes a more efficient O(log N) algorithm and significantly simplifies the code while preserving the original semantics and function signatures.
+***	</comment>
+***
+
+fmod MAIN is
+  protecting INT .
+
+  op f : Nat Nat -> Nat .
+
+  vars X N : Nat .
+
+  eq f(X, N) = X ^ N .
+endfm

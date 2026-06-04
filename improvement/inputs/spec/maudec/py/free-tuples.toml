@@ -1,0 +1,5 @@
+# Es poco sobre lo que hay
+
+[_u003du0060u005b_u0060u005d_i]
+signature = ['float', 'float', 'float']
+examples = [[0.0, 1.0, 0.0], [0.0, 1.0, 0.5], [0.0, 0.5, 1.0], [1.0, 0.5, 1.25]]

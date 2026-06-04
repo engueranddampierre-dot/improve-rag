@@ -1,0 +1,1 @@
+{"comment": "Test cases cover basic parity for even1 (zero, positive, and negative integers) and all branches of the match statement in even2 (base case 0, base case 1, and the recursive case for N >= 2).", "tests": ["even1(0)", "even1(2)", "even1(3)", "even1(-2)", "even1(-3)", "even2(0)", "even2(1)", "even2(2)", "even2(5)", "even2(10)"]}

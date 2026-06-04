@@ -1,0 +1,14 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The implementation is optimized by utilizing Maude's sort system (NzNat) to differentiate between zero and non-zero divisors. This allows for cleaner pattern matching and avoids the overhead of the 'owise' attribute, which is typically slower in the term rewriting engine. The core logic remains the efficient remainder-based Euclidean algorithm, which provides logarithmic time complexity.
+***	</comment>
+***
+
+fmod EUCLIDEAN is
+  protecting NAT .
+  op $gcd : Nat Nat -> Nat .
+  var M : Nat .
+  var NZ : NzNat .
+  eq $gcd(M, 0) = M .
+  eq $gcd(M, NZ) = $gcd(NZ, M rem NZ) .
+endfm

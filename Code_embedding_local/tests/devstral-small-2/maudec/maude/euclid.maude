@@ -1,0 +1,14 @@
+***
+***	<comment from="devstral-small-2">
+***	The original Maude code implements the Euclidean algorithm for computing the greatest common divisor (GCD) of two natural numbers. The algorithm is already quite efficient, but we can simplify the implementation slightly by removing the redundant variable declaration and making the code more concise. Here's the improved version:
+***	</comment>
+***
+
+fmod EUCLIDEAN is
+	protecting NAT .
+
+	op $gcd : Nat Nat -> Nat .
+
+	eq $gcd(M, 0) = M .
+	eq $gcd(M, N) = $gcd(N, M rem N) [owise] .
+endfm

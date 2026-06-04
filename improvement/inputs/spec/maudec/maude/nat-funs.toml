@@ -1,0 +1,15 @@
+[fib]
+signature = ['nat']
+examples = [[0], [1], [2], [10], [15]]
+
+["$gcd"]
+signature = ['nat', 'nat']
+examples = [[12, 8], [0, 5], [17, 5]]
+
+[even1]
+signature = ['nat']
+examples = [[0], [1], [2], [7]]
+
+[even2]
+signature = ['nat']
+examples = [[0], [1], [2], [7]]

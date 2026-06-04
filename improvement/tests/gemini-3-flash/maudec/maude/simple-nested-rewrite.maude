@@ -1,0 +1,15 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The code was simplified by grouping sort declarations using the 'sorts' keyword and removing rule labels to reduce verbosity. The implementation efficiency in Maude for this specific logic is already optimal given the requirement to preserve rule semantics (transitions) and the 'frozen' attribute constraint, which correctly prevents rewriting within the argument of 'g'.
+***	</comment>
+***
+
+mod NESTED-REWRITE-TEST is
+	sorts Foo Bar Ter .
+	op f : Bar Foo -> Foo [ctor] .
+	ops a b c : -> Bar [ctor] .
+	op g : Bar -> Ter [ctor frozen(1)] .
+
+	rl a => b .
+	rl b => c .
+endm

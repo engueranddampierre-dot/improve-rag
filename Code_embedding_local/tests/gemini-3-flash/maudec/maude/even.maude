@@ -1,0 +1,16 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The recursive implementation of 'even2' was replaced with the efficient modulo operator used in 'even1'. In Maude, structural recursion on Peano-style natural numbers (e.g., 's s N') results in O(N) complexity and can lead to stack overflows or slow reductions for large numbers. By using the 'rem' operator, the code leverages built-in machine arithmetic provided by the NAT module, which is significantly more efficient. Additionally, the redundant 'protecting BOOL' import was removed as it is already protected by NAT.
+***	</comment>
+***
+
+fmod EVEN is
+  protecting NAT .
+
+  ops even1 even2 : Nat -> Bool .
+
+  var N : Nat .
+
+  eq even1(N) = N rem 2 == 0 .
+  eq even2(N) = even1(N) .
+endfm

@@ -1,0 +1,28 @@
+***
+***	<comment from="devstral-small-2">
+***	The original code has several inefficiencies and redundancies. Here's a simplified and more efficient version while preserving the semantics and function signatures:
+***	</comment>
+***
+
+fmod SORTS-TEST is
+	protecting INT .
+
+	sort Foo Bar .
+	subsort Foo < Bar .
+
+	op f : -> Foo [ctor] .
+	op g : -> Bar [ctor] .
+
+	var B : Bar .
+	var F : Foo .
+
+	op isFoo1 : Bar -> Bool .
+	eq isFoo1(B) = B :: Foo .
+
+	op isFoo2 : Bar -> Bool .
+	eq isFoo2(B) = B :: Foo .
+
+	op isPositive : Int -> Bool .
+	eq isPositive(N:NzNat) = true .
+	eq isPositive(N:Int) = false [owise] .
+endfm

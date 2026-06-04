@@ -1,0 +1,1 @@
+{"comment": "The tests cover the base case of the recursion (a1=0), the recursive step (a1>=1), and verify the mutual recursion between functions f and g for multiple values. An additional test case for a negative integer is provided to check behavior outside defined match cases.", "tests": ["f(0)", "f(1)", "f(5)", "g(0)", "g(1)", "g(5)", "f(10)", "g(10)"]}

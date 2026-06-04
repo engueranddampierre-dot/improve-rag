@@ -1,0 +1,32 @@
+***
+***	<comment from="devstral-small-2">
+***	The original Maude code is already quite efficient and concise. However, there are a few minor improvements that can be made to enhance readability and maintain the same semantics. Here's the simplified and improved version:
+***	</comment>
+***
+
+fmod STACK{X :: TRIV} is
+
+  sort Stack{X} .
+
+  op mt : -> Stack{X} [ctor] .
+  op push : X$Elt Stack{X} -> Stack{X} [ctor] .
+
+  var S : Stack{X} .
+  var E : X$Elt .
+
+  op pop : Stack{X} -> Stack{X} .
+  eq pop(mt) = mt .
+  eq pop(push(E, S)) = S .
+
+  op top : Stack{X} ~> X$Elt .
+  eq top(push(E, S)) = E .
+
+  op empty? : Stack{X} -> Bool .
+  eq empty?(mt) = true .
+  eq empty?(push(E, S)) = false .
+
+endfm
+
+fmod NAT-STACK is
+  pr STACK{Nat} .
+endfm

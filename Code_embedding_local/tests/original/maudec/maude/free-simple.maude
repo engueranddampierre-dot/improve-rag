@@ -1,0 +1,41 @@
+***
+*** Test for wrappers
+***
+
+fmod WRAPPERS is
+	protecting INT .
+	protecting FLOAT .
+
+	sort Foo .
+
+	op int : Int -> Foo [ctor] .
+	op float : Float -> Foo [ctor] .
+
+	*** Cuadrado de los números
+	op square : Foo -> Foo .
+	op isFloat : Foo -> Bool .
+	op getFloat : Foo ~> Float .
+	op nat2float : Nat -> Float .
+	op add : Foo Foo -> Foo .
+
+	vars N N1 N2 : Int .
+	var  K       : Nat .
+	vars F F1 F2 : Float .
+	var  O : Foo .
+
+	eq square(int(N)) = int(N * N) .
+	eq square(float(F)) = float(F * F) .
+
+	eq isFloat(float(F)) = true .
+	eq isFloat(O) = false [owise] .
+
+	eq getFloat(float(F)) = F .
+
+	eq nat2float(0) = 0.0 .
+	eq nat2float(s K) = 1.0 + nat2float(K) .
+
+	eq add(int(N1), int(N2)) = int(N1 + N2) .
+	eq add(float(F1), float(F2)) = float(F1 + F2) .
+	eq add(int(N1), float(F2)) = float(nat2float(N1) + F2) .
+	eq add(float(F1), int(N2)) = float(F1 + nat2float(N2)) .
+endfm

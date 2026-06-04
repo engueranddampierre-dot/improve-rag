@@ -1,0 +1,14 @@
+***
+*** Euclidean algorithm
+***
+
+fmod EUCLIDEAN is
+	protecting NAT .
+
+	op $gcd : Nat Nat -> Nat .
+
+	vars N M : Nat .
+
+	eq $gcd(M, 0) = M .
+	eq $gcd(M, N) = $gcd(N, M rem N) [owise] .
+endfm

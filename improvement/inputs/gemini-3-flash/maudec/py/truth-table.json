@@ -1,0 +1,1 @@
+{"comment": "Testing all four boolean input combinations for both functions to achieve 100% code coverage across the match cases.", "tests": ["and_(True, True)", "and_(True, False)", "and_(False, True)", "and_(False, False)", "andc(True, True)", "andc(False, False)", "andc(True, False)", "andc(False, True)"]}

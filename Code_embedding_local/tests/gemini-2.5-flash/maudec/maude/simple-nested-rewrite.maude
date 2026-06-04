@@ -1,0 +1,7 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The original rules `a => b` and `b => c` together imply that `a` ultimately rewrites to `c` in two steps, and `b` rewrites to `c` in one step. By replacing `rl [ab] : a => b` with `rl [ac] : a => c`, we achieve the same final state for `a` but in a single rewrite step, thereby improving efficiency. The rule `rl [bc] : b => c` is retained to handle cases where `b` is present initially. The `frozen (1)` attribute on `g` ensures that its argument is not rewritten, so this change does not affect the behavior of `g(a)` or `g(b)`, which remain irreducible. The set of normal forms for all terms is preserved.
+***	</comment>
+***
+
+mod NESTED-REWRITE-TEST is	sort Foo Bar Ter .	op f : Bar Foo -> Foo [ctor] .	ops a b c : -> Bar [ctor] .	op g : Bar -> Ter [ctor frozen (1)] .	rl [ac] : a => c .	rl [bc] : b => c .endm

@@ -1,0 +1,2 @@
+[length]
+examples = [["nil"], ["a"], ["a b c"], ["a b c d a"], ["d c b a"]]

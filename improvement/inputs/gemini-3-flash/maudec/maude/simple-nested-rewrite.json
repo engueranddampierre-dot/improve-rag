@@ -1,0 +1,1 @@
+{"comment": "Test cases covering rewriting rules, transitive steps, nested rewriting in non-frozen operators, and the effect of the frozen attribute in Maude.", "tests": ["rewrite a", "rewrite b", "rewrite f(a, a)", "rewrite f(b, f(a, b))", "rewrite g(a)", "search a =>* c", "search f(a, a) =>! X:Foo", "search g(a) =>+ X:Ter"]}

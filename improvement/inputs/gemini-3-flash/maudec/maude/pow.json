@@ -1,0 +1,1 @@
+{"comment": "The tests cover the base case (N=0) and the recursive step (N > 0). They include edge cases where the base or exponent is 0 or 1, ensuring all equations in the MAIN module are exercised.", "tests": ["f(0, 0)", "f(5, 0)", "f(0, 1)", "f(1, 1)", "f(2, 3)", "f(10, 2)"]}

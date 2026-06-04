@@ -1,0 +1,2 @@
+[palindrome]
+examples = [["nil"], ["a"], ["a e a"], ["a e i e a"], ["a e i"], ["a e e a"]]

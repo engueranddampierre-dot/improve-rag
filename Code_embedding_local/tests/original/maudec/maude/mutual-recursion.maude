@@ -1,0 +1,12 @@
+fmod MUTUAL is
+	protecting NAT .
+
+	ops f g : Nat -> Nat .
+
+	var N : Nat .
+
+	eq f(0) = 1 .
+	eq f(s N) = 2 + g(N) .
+
+	eq g(N) = 1 + f(N) .
+endfm

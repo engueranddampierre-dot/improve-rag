@@ -1,0 +1,25 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The `isFoo2` function is redundant as `isFoo1` provides the exact same functionality using the built-in and more efficient sort membership operator `::`. Removing `isFoo2` simplifies the code and improves efficiency by avoiding an unnecessary re-implementation.
+***	</comment>
+***
+
+fmod SORTS-TEST is
+	protecting INT .
+
+	sort Foo Bar .
+	subsort Foo < Bar .
+
+	op f : -> Foo [ctor] .
+	op g : -> Bar [ctor] .
+
+	var B : Bar .
+	var F : Foo .
+
+	op isFoo1 : Bar -> Bool .
+	eq isFoo1(B) = B :: Foo .
+
+	op isPositive : Int -> Bool .
+	eq isPositive(N:NzNat) = true .
+	eq isPositive(Z:Int) = false [owise] .
+endfm

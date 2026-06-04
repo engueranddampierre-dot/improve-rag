@@ -1,0 +1,8 @@
+[topIncr]
+examples = [["mt"], ["push(1, mt)"], ["push(3, push(2, mt))"]]
+
+[incr]
+examples = [["mt"], ["push(1, mt)"], ["push(3, push(2, push(1, mt)))"]]
+
+[merge]
+examples = [["mt"], ["push(5, mt)"], ["push(3, push(2, mt))"]]

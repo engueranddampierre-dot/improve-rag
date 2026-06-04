@@ -1,0 +1,1 @@
+{"comment": "The test cases cover the base case (a2 = 0), the recursive step (a2 >= 1), and the panic branch (a2 < 0) to ensure complete branch coverage of the function.", "tests": ["f(10, 0)", "f(2, 1)", "f(3, 3)", "f(-2, 2)", "f(0, 5)", "f(1, 1)"]}

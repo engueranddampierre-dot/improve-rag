@@ -1,0 +1,26 @@
+fmod NAT-FUNS is
+ pr NAT .
+
+ vars N M : Nat .
+
+ op fib : Nat -> Nat .
+ eq fib(0) = 0 .
+ eq fib(1) = 1 .
+ eq fib(s(s(N))) = fib(s(N)) + fib(N) .
+
+ op _! : Nat -> Nat .
+ eq 0 ! = 1 .
+ eq (s(N)) ! = s(N) * (N !) .
+
+ *** Greatest common divisor (Euclidean algorithm)
+ op $gcd : Nat Nat -> Nat .
+
+ eq $gcd(M, 0) = M .
+ eq $gcd(M, N) = $gcd(N, M rem N) [owise] .
+
+ ops even1 even2 : Nat -> Bool .
+ eq even1(N) = N rem 2 == 0 .
+ eq even2(0) = true .
+ eq even2(1) = false .
+ eq even2(s s N) = even2(N) .
+endfm

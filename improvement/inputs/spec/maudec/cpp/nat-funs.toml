@@ -1,0 +1,7 @@
+[fib]
+signature = [{type = 'nat', max = 30}]
+examples = [[0], [1], [2], [5], [6], [7], [10]]
+
+[_u0021]
+signature = [{type = 'nat', max = 12}]
+examples = [[0], [1], [2], [3], [4], [5], [6], [12]]

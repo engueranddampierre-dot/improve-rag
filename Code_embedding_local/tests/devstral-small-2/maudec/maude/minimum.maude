@@ -1,0 +1,13 @@
+***
+***	<comment from="devstral-small-2">
+***	The original code is already quite efficient and correct, but we can simplify it by removing the unnecessary variable declarations and using a more concise syntax. Here's the improved version:
+***	</comment>
+***
+
+fmod MINIMUM is
+	protecting NAT .
+	
+	op minimum : Nat Nat -> Nat [comm] .
+	
+	ceq minimum(M, N) = M if M <= N .
+endfm

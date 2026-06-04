@@ -1,0 +1,13 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The modified Maude code improves efficiency by combining the two conditional rules (crl) into a single unconditional rule (rl) using a functional 'if-then-else' expression. This optimization reduces the overhead of the rewrite engine by decreasing the number of rule matching attempts and condition evaluations. The semantics are strictly preserved, maintaining the sequence's behavior for all natural numbers, including the cycle for one and the fixed point for zero.
+***	</comment>
+***
+
+mod COLLATZ is
+  protecting NAT .
+
+  var N : Nat .
+
+  rl N => if N rem 2 == 0 then N quo 2 else 3 * N + 1 fi .
+endm

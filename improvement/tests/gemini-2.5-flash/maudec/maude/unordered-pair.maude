@@ -1,0 +1,7 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	I have simplified the module by removing the redundant `ex2` operation. Since the `Pair` constructor `{_,_}` is declared as commutative (`comm`), `{2, 1}` and `{1, 2}` represent the exact same term. Therefore, `ex2 = {1, 2}` was identical to `ex1 = {2, 1}` and could be removed without changing the module's semantics. This improves clarity and slightly reduces the number of terms and equations Maude needs to manage.
+***	</comment>
+***
+
+mod UNORDERED-PAIR isprotecting NAT .sort Pair .op {_,_} : Nat Nat -> Pair [ctor comm] .op ex1 : -> Pair .op ex3 : Nat Nat -> Pair .eq ex1 = {2, 1} .var N M : Nat .eq ex3(N, M) = {N + M, N * M} .endm

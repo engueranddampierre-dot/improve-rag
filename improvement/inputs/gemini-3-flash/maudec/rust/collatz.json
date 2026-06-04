@@ -1,0 +1,1 @@
+{"comment": "Testing rlapp_Nat and arlapp_Nat with even numbers, positive odd numbers, and negative odd numbers to ensure full branch coverage of the modulo operator behavior in Rust.", "tests": ["rlapp_Nat(0)", "rlapp_Nat(2)", "rlapp_Nat(-2)", "rlapp_Nat(1)", "rlapp_Nat(3)", "rlapp_Nat(-1)", "rlapp_Nat(-3)", "arlapp_Nat(0)", "arlapp_Nat(4)", "arlapp_Nat(5)", "arlapp_Nat(-5)"]}

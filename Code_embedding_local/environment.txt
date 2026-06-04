@@ -1,0 +1,8 @@
+# Lancement de l'environnement virtuel :
+python -m venv .venv
+# puis :
+.\.venv\Scripts\Activate.ps1
+
+# Lancement de qdrant avec docker :
+docker start qdrant
+# avec docker ouvert

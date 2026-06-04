@@ -1,0 +1,1 @@
+{"comment": "The tests are designed to cover all branches of the function: the base case where m is 0, the recursive case where n is 0, and the general recursive case where both m and n are greater than 0. These inputs ensure complete path coverage for the provided logic.", "tests": ["f(0, 0)", "f(0, 5)", "f(1, 0)", "f(1, 1)", "f(2, 0)", "f(2, 2)", "f(3, 1)"]}

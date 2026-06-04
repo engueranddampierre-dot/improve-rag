@@ -1,0 +1,37 @@
+***
+***	<comment from="gemma-3-27b-it">
+***
+***	**Improvements and Explanation:**
+***
+***	* **Wildcards (`_`)**: The original code explicitly matched all arguments to the constructors `f`, `g`, and `h` in the `first` equations, even though only the first argument was relevant.  This is unnecessary and less efficient.  Using wildcards (`_`) for the irrelevant arguments tells Maude to match anything in those positions, making the equations more concise and faster to apply.  This is a standard optimization technique in equational programming.
+***
+***	**Why this is more efficient:**
+***
+***	Maude's pattern matching engine has to compare the arguments in the original code.  By using wildcards, we reduce the number of comparisons needed.  This is especially important if the arguments are complex terms.  The engine can quickly determine that the first argument matches and then proceed without needing to examine the others.
+***
+***	**Preservation of Semantics:**
+***
+***	The semantics are preserved because the `first` operation *only* depends on the first argument of the constructor.  The wildcards ensure that any value can be in the other positions without affecting the result.  The equations still correctly extract the first `Float` value from any instance of `f`, `g`, or `h`.
+***
+***	</comment>
+***
+
+***
+*** Test for wrappers
+***
+
+fmod TUPLES is
+	protecting FLOAT .
+
+	sort Foo .
+
+	op f : Float Float -> Foo [ctor] .
+	op g : Float Float Bool -> Foo [ctor] .
+	op h : Float Bool Float Bool -> Foo [ctor] .
+
+	op first : Foo -> Float .
+
+	eq first(f(F1, _)) = F1 .
+	eq first(g(F1, _, _)) = F1 .
+	eq first(h(F1, _, _, _)) = F1 .
+endfm

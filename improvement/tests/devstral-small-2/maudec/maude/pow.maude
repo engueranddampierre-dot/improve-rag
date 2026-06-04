@@ -1,0 +1,16 @@
+***
+***	<comment from="devstral-small-2">
+***	The original code defines a function `f` that computes X raised to the power of N (i.e., X^N) using recursion. The base case is `f(X, 0) = 1`, and the recursive case is `f(X, s N) = X * f(X, N)`. This is a standard recursive definition for exponentiation.
+***	</comment>
+***
+
+fmod MAIN is
+	protecting INT .
+
+	op f : Nat Nat -> Nat .
+
+	vars X N : Nat .
+
+	eq f(X, 0) = 1 .
+	eq f(X, s N) = X * f(X, N) .
+endfm

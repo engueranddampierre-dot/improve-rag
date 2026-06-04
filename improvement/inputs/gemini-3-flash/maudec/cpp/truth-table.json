@@ -1,0 +1,1 @@
+{"comment": "The provided test cases cover all four possible combinations of boolean inputs for both _and and andc functions, which ensures 100% branch and path coverage for the provided logic.", "tests": ["_and(true, true)", " _and(true, false)", " _and(false, true)", " _and(false, false)", "andc(true, true)", "andc(true, false)", "andc(false, true)", "andc(false, false)"]}

@@ -1,0 +1,7 @@
+[even1]
+signature = ['nat']
+examples = [[0], [1], [2], [7], [10]]
+
+[even2]
+signature = ['nat']
+examples = [[0], [1], [2], [7], [10]]

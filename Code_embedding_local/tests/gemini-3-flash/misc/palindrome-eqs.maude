@@ -1,0 +1,26 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The implementation is optimized by utilizing non-linear pattern matching (S L S) to check for palindromes. This approach is more efficient than the original because it uses Maude's internal matching engine to verify equality of the first and last symbols before making a recursive call. Additionally, by using the 'owise' attribute, the function avoids unnecessary recursive steps for non-palindromes, immediately returning false if the first and last symbols do not match, whereas the original implementation would continue evaluating the rest of the list.
+***	</comment>
+***
+
+fmod MAIN is
+	sorts Symbol List .
+	subsort Symbol < List .
+	
+	ops a e i o u : -> Symbol [ctor] .
+
+	op nil : -> List [ctor] .
+	op __ : List List -> List [ctor assoc id: nil] .
+
+	op f : List -> Bool .
+
+	vars S : Symbol .
+	var  L : List .
+
+	eq f(S L S) = f(L) .
+	eq f(S) = true .
+	eq f(nil) = true .
+	eq f(L) = false [owise] .
+
+endfm

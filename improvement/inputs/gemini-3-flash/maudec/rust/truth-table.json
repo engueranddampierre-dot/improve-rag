@@ -1,0 +1,1 @@
+{"comment": "These test cases cover all four possible combinations of boolean inputs for both the and and andc functions, ensuring that every branch of the match statements is exercised.", "tests": ["and(true, true)", "and(true, false)", "and(false, true)", "and(false, false)", "andc(true, true)", "andc(true, false)", "andc(false, true)", "andc(false, false)"]}

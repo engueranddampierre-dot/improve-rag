@@ -1,0 +1,1 @@
+{"comment": "Test cases covering all branches of Bar enum logic functions and integer positivity checks.", "tests": ["hasSort_Foo(&Bar::F)", "hasSort_Foo(&Bar::G)", "isFoo1(&Bar::F)", "isFoo1(&Bar::G)", "isFoo2(&Bar::F)", "isFoo2(&Bar::G)", "isPositive(5)", "isPositive(0)", "isPositive(-5)"]}

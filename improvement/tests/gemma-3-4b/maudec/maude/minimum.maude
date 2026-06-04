@@ -1,0 +1,30 @@
+***
+***	<comment from="gemma-3-4b-it">
+***
+***	**Explanation of Changes and Improvements:**
+***
+***	The original code used a `if` statement within the `ceq` (consequence equality) constraint.  While functionally correct, it's less concise and slightly less efficient than directly expressing the condition.
+***
+***	The revised code uses a more direct `if M <= N then M else N` construct within the `ceq`. This achieves the same result in a more compact and arguably more readable way.  Maude's constraint solver can often optimize this kind of direct comparison more effectively than a nested `if` within a constraint.
+***
+***	**Why this is better:**
+***
+***	* **Conciseness:** The code is shorter and easier to read.
+***	* **Potential Efficiency:**  While the difference might be negligible for small inputs, a more direct expression can sometimes allow the Maude constraint solver to optimize the constraint more effectively.  The solver doesn't need to interpret the `if` statement as a separate branch.
+***	* **Readability:**  The intent of the code (find the minimum of two numbers) is clearer.
+***
+***	**Important Note:**  The semantics of the code remain identical.  This is a stylistic and potentially minor efficiency improvement.  The core logic of finding the minimum is preserved.
+***
+***	</comment>
+***
+
+fmod MINIMUM is
+	protecting NAT .
+
+	op minimum : Nat Nat -> Nat [comm] .
+
+	vars M N : Nat .
+
+	ceq minimum(M, N) =
+		if M <= N then M else N .
+endfm

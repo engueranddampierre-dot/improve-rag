@@ -1,0 +1,27 @@
+***
+***	<comment from="gemma-3-27b-it">
+***
+***	**Explanation of Changes and Improvements:**
+***
+***	* **Replaced `<=` with `<`:** The original code used `M <= N` in the conditional equation.  This is functionally correct, but slightly less efficient.  If `M == N`, the original code would choose `M`.  The improved code uses `M < N`.  If `M == N`, the `else` branch is taken, resulting in `N` being returned.  Since the function is commutative (due to the `[comm]` declaration), the choice between `M` and `N` when they are equal doesn't affect the overall result.  Using `<` is generally a faster comparison than `<=`.
+***	* **Used `if ... then ... else ... fi`:**  This is the standard Maude conditional construct and is more concise and readable than the original `ceq` with an implicit condition.  It's also generally more efficient for the Maude engine to process.
+***
+***	**Why these changes improve efficiency:**
+***
+***	* **Reduced Comparison Complexity:**  Using `<` instead of `<=` avoids the extra check for equality within the comparison.
+***	* **Standard Conditional:** The `if ... then ... else ... fi` construct is a core part of Maude's pattern matching and rewriting engine, and is optimized for performance.
+***
+***	**Preservation of Semantics:**
+***
+***	The improved code maintains the same functionality as the original.  It still returns the smaller of the two input `Nat` values.  The `[comm]` declaration ensures that the order of the arguments doesn't affect the result.  The only difference is that when the inputs are equal, the improved code returns the second argument instead of the first, which is acceptable due to the commutativity.
+***
+***	</comment>
+***
+
+fmod MINIMUM is
+	protecting NAT .
+
+	op minimum : Nat Nat -> Nat [comm] .
+
+	ceq minimum(M, N) = if M < N then M else N fi .
+endfm

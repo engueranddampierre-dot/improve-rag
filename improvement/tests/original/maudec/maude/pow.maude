@@ -1,0 +1,10 @@
+fmod MAIN is
+	protecting INT .
+
+	op f : Nat Nat -> Nat .
+
+	vars X N : Nat .
+
+	eq f(X, 0) = 1 .
+	eq f(X, s N) = X * f(X, N) .
+endfm

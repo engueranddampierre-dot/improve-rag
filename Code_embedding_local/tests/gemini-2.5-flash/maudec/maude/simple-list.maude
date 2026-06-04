@@ -1,0 +1,23 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The original code for calculating the length of a list is already quite efficient and semantically correct for Maude's rewrite engine, especially given how pattern matching works with associative operators. Therefore, the main simplification is to reduce the number of user-defined sorts and operators if the `Letter` sort and its constructors were merely illustrative. This version simplifies the module by directly using `Nat` (from the `NAT` module) as the element type, eliminating the need for a separate `Letter` sort and its specific constructors (e.g., `a`, `b`, `c`, `d`). This makes the module more concise while preserving the exact semantics and efficiency of the `length` function.
+***	</comment>
+***
+
+fmod SIMPLE-LIST is
+	protecting NAT .
+
+	sort List .
+	subsort Nat < List .
+
+	op nil : -> List [ctor] .
+	op __ : List List -> List [ctor assoc id: nil] .
+
+	op length : List -> Nat .
+
+	var N : Nat .
+	var L : List .
+
+	eq length(nil) = 0 .
+	eq length(N L) = s length(L) .
+endfm

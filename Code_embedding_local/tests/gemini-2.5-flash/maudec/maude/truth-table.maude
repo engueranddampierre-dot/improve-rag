@@ -1,0 +1,22 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The Maude `BOOL` module, which is `protecting` by `TRUTH-TABLE`, already provides a highly efficient and well-defined logical AND operator (`_and_`). Therefore, defining `and` and `andc` explicitly is redundant if you only need standard boolean AND functionality.
+***
+***	However, if you wish to simplify and improve the efficiency of these specific definitions within the `TRUTH-TABLE` module, you can reduce the number of equations by using more general variable patterns. Additionally, for the commutative operator `andc`, we can leverage the `id: true` attribute, which states that `true` is the identity element for `andc` (i.e., `andc(true, B) = B`). This allows the definition of `andc` to be simplified to a single equation, making it significantly more efficient for Maude's term rewriting engine.
+***
+***	Here's the simplified and improved version of the code:
+***	</comment>
+***
+
+fmod TRUTH-TABLE is
+	protecting BOOL .
+
+	op and : Bool Bool -> Bool .
+
+	eq and(true, B:Bool) = B:Bool .
+	eq and(false, B:Bool) = false .
+
+	op andc : Bool Bool -> Bool [comm id: true] .
+
+	eq andc(false, B:Bool) = false .
+endfm

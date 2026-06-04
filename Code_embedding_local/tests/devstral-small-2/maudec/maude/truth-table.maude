@@ -1,0 +1,18 @@
+***
+***	<comment from="devstral-small-2">
+***	The original code defines a module with two operations: `and` and `andc`. The `and` operation is the standard logical AND, while `andc` is a commutative version of the same operation. The current implementation uses multiple equations to define the behavior of these operations. We can simplify this by using a single equation with a conditional expression, which is more efficient and concise.
+***	</comment>
+***
+
+fmod TRUTH-TABLE is
+	protecting BOOL .
+
+	op and : Bool Bool -> Bool .
+
+	eq and(X, Y) = if X == true and Y == true then true else false .
+
+	op andc : Bool Bool -> Bool [comm] .
+
+	eq andc(X, Y) = if X == true and Y == true then true else false .
+
+endfm

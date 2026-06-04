@@ -1,0 +1,23 @@
+***
+***	<comment from="devstral-small-2">
+***	The original code defines a module UNORDERED-PAIR with a sort Pair and operations to create pairs of natural numbers. The pairs are unordered, meaning that {N, M} is the same as {M, N}. The module also defines three specific examples of pairs: ex1, ex2, and ex3. The goal is to simplify and improve the efficiency of the code while preserving the semantics and keeping the original function signatures.
+***	</comment>
+***
+
+mod UNORDERED-PAIR is
+	protecting NAT .
+
+	sort Pair .
+
+	op {_,_} : Nat Nat -> Pair [ctor comm] .
+
+	ops ex1 ex2 : -> Pair .
+	op ex3 : Nat Nat -> Pair .
+
+	ceq ex1 = {2, 1} if true .
+	ceq ex2 = {1, 2} if true .
+
+	var N M : Nat .
+
+	ceq ex3(N, M) = {N + M, N * M} if true .
+endm

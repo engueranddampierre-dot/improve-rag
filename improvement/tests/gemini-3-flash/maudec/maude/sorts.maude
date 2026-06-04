@@ -1,0 +1,19 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	I have simplified the code by grouping declarations and using more idiomatic Maude constructs. The isPositive function was streamlined to a single equation using the built-in comparison operator, and declarations were consolidated for clarity and efficiency.
+***	</comment>
+***
+
+fmod SORTS-TEST is
+  protecting INT .
+  sorts Foo Bar .
+  subsort Foo < Bar .
+  op f : -> Foo [ctor] .
+  op g : -> Bar [ctor] .
+  ops isFoo1 isFoo2 : Bar -> Bool .
+  op isPositive : Int -> Bool .
+  eq isFoo1(B:Bar) = B:Bar :: Foo .
+  eq isFoo2(F:Foo) = true .
+  eq isFoo2(B:Bar) = false [owise] .
+  eq isPositive(I:Int) = I > 0 .
+endfm

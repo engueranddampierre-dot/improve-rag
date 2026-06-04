@@ -1,0 +1,22 @@
+***
+*** Test for wrappers
+***
+
+fmod TUPLES is
+	protecting FLOAT .
+
+	sort Foo .
+
+	op f : Float Float -> Foo [ctor] .
+	op g : Float Float Bool -> Foo [ctor] .
+	op h : Float Bool Float Bool -> Foo [ctor] .
+
+	op first : Foo -> Float .
+
+	vars F1 F2 : Float .
+	vars B1 B2 : Bool .
+
+	eq first(f(F1, F2)) = F1 .
+	eq first(g(F1, F2, B1)) = F1 .
+	eq first(h(F1, B1, F2, B2)) = F1 .
+endfm

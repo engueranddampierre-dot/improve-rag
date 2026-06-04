@@ -1,0 +1,20 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The implementation is optimized by using a linear-time reversal helper with an accumulator, reducing the complexity of the palindrome check from O(N^2) to O(N). This avoids the overhead of repeated associative pattern matching at the ends of the list and simplifies the logic while preserving the original signatures and semantics.
+***	</comment>
+***
+
+fmod PALINDROME is
+  sorts Symbol List .
+  subsort Symbol < List .
+  ops a e i o u : -> Symbol [ctor] .
+  op nil : -> List [ctor] .
+  op __ : List List -> List [ctor assoc id: nil] .
+  op palindrome : List -> Bool .
+  op rev : List List -> List .
+  vars S : Symbol .
+  vars L L1 L2 : List .
+  eq palindrome(L) = L == rev(L, nil) .
+  eq rev(S L1, L2) = rev(L1, S L2) .
+  eq rev(nil, L2) = L2 .
+endfm

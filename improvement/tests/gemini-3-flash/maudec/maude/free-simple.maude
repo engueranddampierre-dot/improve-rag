@@ -1,0 +1,42 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The Maude code was improved by replacing the highly inefficient $O(N)$ recursive implementation of `nat2float` with a call to the built-in `float` conversion function, which is an $O(1)$ operation. The rest of the module's logic was kept consistent with the original semantics, including the mixed-type addition rules which depend on `nat2float`. This preservation ensures that the domain of the addition operation remains unchanged while significantly improving performance for large natural numbers. Other functions like `square` and `isFloat` were already efficient and were maintained with minimal stylistic cleanup.
+***	</comment>
+***
+
+fmod WRAPPERS is
+	protecting INT .
+	protecting FLOAT .
+
+	sort Foo .
+
+	op int : Int -> Foo [ctor] .
+	op float : Float -> Foo [ctor] .
+
+	op square : Foo -> Foo .
+	op isFloat : Foo -> Bool .
+	op getFloat : Foo ~> Float .
+	op nat2float : Nat -> Float .
+	op add : Foo Foo -> Foo .
+
+	vars N N1 N2 : Int .
+	var  K       : Nat .
+	vars F F1 F2 : Float .
+	var  O       : Foo .
+
+	eq square(int(N)) = int(N * N) .
+	eq square(float(F)) = float(F * F) .
+
+	eq isFloat(float(F)) = true .
+	eq isFloat(O) = false [owise] .
+
+	eq getFloat(float(F)) = F .
+
+	*** Efficiency improvement: Use built-in O(1) conversion instead of O(N) recursion
+	eq nat2float(K) = float(K) .
+
+	eq add(int(N1), int(N2)) = int(N1 + N2) .
+	eq add(float(F1), float(F2)) = float(F1 + F2) .
+	eq add(int(N1), float(F2)) = float(nat2float(N1) + F2) .
+	eq add(float(F1), int(N2)) = float(F1 + nat2float(N2)) .
+endfm

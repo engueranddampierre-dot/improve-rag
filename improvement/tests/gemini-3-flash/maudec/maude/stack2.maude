@@ -1,0 +1,35 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The code has been refined for clarity and performance while maintaining the original signatures. I have substituted the 'owise' attribute in the 'empty?' function with explicit pattern matching for the stack constructors, which is a more direct approach in Maude. The implementations of 'topIncr', 'incr', and 'merge' are already efficient as they leverage direct term rewriting on the algebraic structure of the stack, which is optimal for the Maude engine.
+***	</comment>
+***
+
+fmod STACK{X :: TRIV} is
+  sort Stack{X} .
+  op mt : -> Stack{X} [ctor] .
+  op push : X$Elt Stack{X} -> Stack{X} [ctor] .
+  var S : Stack{X} .
+  var E : X$Elt .
+  op pop : Stack{X} -> Stack{X} .
+  eq pop(mt) = mt .
+  eq pop(push(E, S)) = S .
+  op top : Stack{X} ~> X$Elt .
+  eq top(push(E, S)) = E .
+  op empty? : Stack{X} -> Bool .
+  eq empty?(mt) = true .
+  eq empty?(push(E, S)) = false .
+endfm
+fmod NAT2-STACK is
+  pr STACK{Nat} .
+  vars N M : Nat .
+  var S : Stack{Nat} .
+  op topIncr : Stack{Nat} -> Stack{Nat} .
+  eq topIncr(mt) = mt .
+  eq topIncr(push(N, S)) = push(s N, S) .
+  op incr : Stack{Nat} -> Stack{Nat} .
+  eq incr(mt) = mt .
+  eq incr(push(N, S)) = push(s N, incr(S)) .
+  op merge : Stack{Nat} -> Stack{Nat} .
+  eq merge(push(N, push(M, S))) = push(N + M, S) .
+  eq merge(S) = S [owise] .
+endfm

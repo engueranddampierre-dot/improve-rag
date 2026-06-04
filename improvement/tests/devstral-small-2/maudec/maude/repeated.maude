@@ -1,0 +1,28 @@
+***
+***	<comment from="devstral-small-2">
+***	The original code computes the norm twice in the normalize function, which is inefficient. We can compute it once and store it in a variable to improve efficiency.
+***	</comment>
+***
+
+fmod REPEATED is
+	protecting FLOAT .
+
+	sort Vector .
+
+	op <_,_> : Float Float -> Vector [ctor] .
+
+	op norm : Vector -> Float .
+	op normalize : Vector -> Vector .
+
+	vars X Y : Float .
+
+	eq norm(< X, Y >) = sqrt(X * X + Y * Y) .
+	eq normalize(< X, Y >) =
+		let N = norm(< X, Y >) in
+			if N =/= 0.0 then
+				< X / N, Y / N >
+			else
+				< X, Y >
+			fi
+		endlet .
+endfm

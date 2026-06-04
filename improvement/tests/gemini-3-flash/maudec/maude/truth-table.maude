@@ -1,0 +1,17 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The original code explicitly listed every combination for the truth tables. This improved version leverages Maude's built-in boolean operations from the BOOL module and uses variables to handle all cases in a single equation per operator. This approach is more efficient as it reduces the size of the rule set and utilizes the highly optimized internal implementation of the built-in 'and' operator. The semantics remain identical, and the commutative attribute [comm] is preserved.
+***	</comment>
+***
+
+fmod TRUTH-TABLE is
+  protecting BOOL .
+
+  vars B1 B2 : Bool .
+
+  op and : Bool Bool -> Bool .
+  eq and(B1, B2) = B1 and B2 .
+
+  op andc : Bool Bool -> Bool [comm] .
+  eq andc(B1, B2) = B1 and B2 .
+endfm

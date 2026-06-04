@@ -1,0 +1,5 @@
+# Es poco sobre lo que hay
+
+[nat2float]
+signature = [{type = 'nat', max = 2000}]
+examples = [[0], [1], [2], [3]]

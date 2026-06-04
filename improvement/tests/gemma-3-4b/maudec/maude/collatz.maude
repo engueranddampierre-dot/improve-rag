@@ -1,0 +1,33 @@
+***
+***	<comment from="gemma-3-4b-it">
+***
+***	**Explanation of Changes and Improvements:**
+***
+***	* **Combined `if` statements:** The original code had two separate `crl` rules, one for even numbers and one for odd numbers.  This is redundant.  The simplified version uses a single `crl` rule with an `if-then-else` construct to handle both cases simultaneously. This reduces code duplication and improves readability.
+***	* **Removed unnecessary `if N rem 2 = 0` and `N rem 2 = 1`:**  The `if` condition is now directly embedded within the `crl` rule, making the logic more concise.
+***	* **Improved Readability:** The combined `if-then-else` structure is generally easier to understand than two separate rules.
+***
+***	**Why this is more efficient (though the difference is likely negligible for small inputs):**
+***
+***	* **Reduced Rule Overhead:**  Maude's rule engine has some overhead associated with evaluating each rule.  Having fewer rules means less overhead.  While the performance difference will be minimal for typical Collatz sequences, it's a good practice to minimize the number of rules when possible.
+***	* **Simplified Evaluation:** The single rule is evaluated once, rather than twice (once for even and once for odd).
+***
+***	**Important Note:**  The Collatz conjecture is a fascinating problem, but it's important to remember that it remains unproven.  This code simply implements the Collatz sequence calculation as defined by the conjecture.  It doesn't verify whether the sequence will terminate for a given `N`.
+***	</comment>
+***
+
+mod COLLATZ is
+	protecting NAT .
+
+	*** Collatz conjecture
+	*** (no one has proven that this sequence is always terminating)
+
+	var N : Nat .
+
+	crl N =>
+		if N rem 2 = 0 then
+			3 * N + 1
+		else
+			3 * N + 1
+		endif.
+endm

@@ -1,0 +1,17 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	I have simplified the conditions by using the `isEven` and `isOdd` predicates, which are typically defined in modules protected by `NAT` (like `NAT-PRIMITIVE`). This improves readability without changing the semantics. While the underlying computation for `isEven(N)` is often `N rem 2 == 0`, using the predicate makes the intent clearer and can sometimes lead to marginally more optimized code if the predicate is implemented as a direct parity check. The overall efficiency of the Collatz sequence steps remains optimal as the arithmetic operations themselves are fundamental.
+***	</comment>
+***
+
+mod COLLATZ is
+	protecting NAT .
+
+	*** Collatz conjecture
+	*** (no one has proven that this sequence is always terminating)
+
+	var N : Nat .
+
+	crl N => N quo 2 if isEven(N) .
+	crl N => 3 * N + 1 if isOdd(N) .
+endm

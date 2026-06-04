@@ -1,0 +1,21 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The code has been simplified by using anonymous variables (_) for unused constructor arguments and inline variable declarations (F:Float). This approach is more efficient in the Maude rewrite engine as it reduces the number of named variables that must be bound during pattern matching and eliminates the need for global variable declarations, making the module cleaner and more maintainable.
+***	</comment>
+***
+
+fmod TUPLES is
+	protecting FLOAT .
+
+	sort Foo .
+
+	op f : Float Float -> Foo [ctor] .
+	op g : Float Float Bool -> Foo [ctor] .
+	op h : Float Bool Float Bool -> Foo [ctor] .
+
+	op first : Foo -> Float .
+
+	eq first(f(F:Float, _)) = F:Float .
+	eq first(g(F:Float, _, _)) = F:Float .
+	eq first(h(F:Float, _, _, _)) = F:Float .
+endfm

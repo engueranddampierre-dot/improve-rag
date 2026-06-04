@@ -1,0 +1,25 @@
+***
+***	<comment from="devstral-small-2">
+***	The original code defines a function `f` that checks if a list of symbols has at least one pair of identical adjacent symbols (considering the list as circular, since the first and last elements are compared in the equation for `f(S1 L S2)`). The function returns `true` if such a pair exists, and `false` otherwise. The current implementation is inefficient because it checks all possible pairs of symbols in the list, even when it could return early if a pair is found.
+***	</comment>
+***
+
+fmod MAIN is
+	sorts Symbol List .
+	subsort Symbol < List .
+	
+	op a e i o u : -> Symbol [ctor] .
+	
+	op nil : -> List [ctor] .
+	op __ : List List -> List [ctor assoc id: nil] .
+	
+	op f : List -> Bool .
+	
+	vars S S1 S2 : Symbol .
+	var L : List .
+	
+	eq f(nil) = true .
+	eq f(S) = true .
+	eq f(S1 L S2) = S1 == S2 or f(L S2 S1) .
+	
+endfm

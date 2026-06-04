@@ -1,0 +1,1 @@
+{"comment": "The tests cover the base case (a2=0), the recursive branch (a2 >= 1) with multiple depths, different values of X (positive, zero, negative), and a case where no match is found (a2 < 0).", "tests": ["f(5, 0)", "f(2, 1)", "f(3, 3)", "f(0, 5)", "f(-2, 2)", "f(-2, 3)", "f(10, -1)"]}

@@ -1,0 +1,1 @@
+{"comment": "The tests cover all paths of the minimum function, including cases where N is less than M, M is less than N, N equals M, and scenarios with negative numbers and zero.", "tests": ["minimum(5, 10)", "minimum(10, 5)", "minimum(7, 7)", "minimum(-1, -5)", "minimum(0, 100)", "minimum(-10, 0)"]}

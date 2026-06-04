@@ -1,0 +1,49 @@
+***
+***	<comment from="devstral-small-2">
+***	I'll simplify and improve the efficiency of the Maude code while preserving semantics and function signatures.
+***	</comment>
+***
+
+fmod STACK{X :: TRIV} is
+
+ sort Stack{X} .
+
+ op mt : -> Stack{X} [ctor] .
+ op push : X$Elt Stack{X} -> Stack{X} [ctor] .
+
+ var S : Stack{X} .
+ var E : X$Elt .
+
+ op pop : Stack{X} -> Stack{X} .
+ eq pop(mt) = mt .
+ eq pop(push(E, S)) = S .
+
+ op top : Stack{X} ~> X$Elt .
+ eq top(push(E, S)) = E .
+
+ op empty? : Stack{X} -> Bool .
+ eq empty?(mt) = true .
+ eq empty?(S) = false [owise] .
+endfm
+
+fmod NAT2-STACK is
+ pr STACK{Nat} .
+
+ vars N M : Nat .
+ var S : Stack{Nat} .
+
+ *** Increment the top, reusing the rest
+ op topIncr : Stack{Nat} -> Stack{Nat} .
+ eq topIncr(mt) = mt .
+ eq topIncr(push(N, S)) = push(s N, S) .
+
+ *** Increment all values
+ op incr : Stack{Nat} -> Stack{Nat} .
+ eq incr(mt) = mt .
+ eq incr(push(N, S)) = push(s N, incr(S)) .
+
+ *** Merge top two values (if possible)
+ op merge : Stack{Nat} -> Stack{Nat} .
+ eq merge(push(N, push(M, S))) = push(N + M, S) .
+ eq merge(S) = S [owise] .
+endfm

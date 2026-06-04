@@ -1,0 +1,34 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	To simplify and improve efficiency while preserving the observable semantics, we can introduce a canonical representation for terms of sort `Foo`. Instead of `f`, `g`, and `h` being direct constructors, they become operators that build `Foo` terms using a single canonical constructor `mkFoo`. This `mkFoo` constructor will consistently take the 'first' float as its first argument, and the rest of the data as a separate sub-sort `TupleData`. This allows the `first` operator to be defined with a single, highly efficient equation. This design reduces the number of equations for `first` from three to one, improving its efficiency in terms of matching.
+***	</comment>
+***
+
+fmod TUPLES-SIMPLIFIED is
+	protecting FLOAT .
+
+	sort Foo .
+	sort TupleData .
+
+	op mkFoo : Float TupleData -> Foo [ctor] .
+
+	op dataF : Float -> TupleData [ctor] .
+	op dataFB : Float Bool -> TupleData [ctor] .
+	op dataFBFB : Bool Float Bool -> TupleData [ctor] .
+
+	op f : Float Float -> Foo .
+	op g : Float Float Bool -> Foo .
+	op h : Float Bool Float Bool -> Foo .
+
+	op first : Foo -> Float .
+
+	vars F1 F2 : Float .
+	vars B1 B2 : Bool .
+	vars TD : TupleData .
+
+	eq f(F1, F2) = mkFoo(F1, dataF(F2)) .
+	eq g(F1, F2, B1) = mkFoo(F1, dataFB(F2, B1)) .
+	eq h(F1, B1, F2, B2) = mkFoo(F1, dataFBFB(B1, F2, B2)) .
+
+	eq first(mkFoo(F1, TD)) = F1 .
+endfm
