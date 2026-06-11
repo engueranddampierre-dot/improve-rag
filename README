@@ -2,7 +2,7 @@ I. Code_embedding_local
 
 You can find in Code_embedding_local the Retrieved Augmented Generation model
 
-You first need read "environment.txt", then "requirements.txt" (read it!), then install them
+You first need to read "environment.txt", then "requirements.txt" (read it!), then install them
 Then start Qdrant with docker
 
 Then use index_html.py to create a Qdrant Collection
@@ -16,7 +16,3 @@ tools gives you a few utilitarian functions to interact with the collection
 II. Improvement
 
 You can find in improvement the original project of improvement and testing, with new TOML files for Maude and corrected AI-generated tests since some of them were broken and caused some codes to fail even if they were working
-
-rag-gemini.py is used the same way as improve.py but only with .maude files ; it improves the codes with the help of the rag from improve-rag
-
-the current results are stocked in tests/gemini-rag/maudec/maude
