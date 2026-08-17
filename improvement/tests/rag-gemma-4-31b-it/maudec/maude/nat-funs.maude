@@ -1,0 +1,33 @@
+***
+***	<comment from="gemma-4-31b-it">
+***
+***	</comment>
+***
+
+fmod NAT-FUNS is
+ pr NAT .
+
+ vars N M A B : Nat .
+
+ op fib : Nat -> Nat .
+ *** Use an auxiliary function to implement fibonacci in linear time O(n)
+ *** instead of exponential time O(2^n).
+ op fib-aux : Nat Nat Nat -> Nat .
+ eq fib(N) = fib-aux(N, 0, 1) .
+ eq fib-aux(0, A, B) = A .
+ eq fib-aux(s N, A, B) = fib-aux(N, B, A + B) .
+
+ op _! : Nat -> Nat .
+ eq 0 ! = 1 .
+ eq (s N) ! = (s N) * (N !) .
+
+ *** Greatest common divisor (Euclidean algorithm)
+ op $gcd : Nat Nat -> Nat .
+ eq $gcd(M, 0) = M .
+ eq $gcd(M, N) = $gcd(N, M rem N) [owise] .
+
+ ops even1 even2 : Nat -> Bool .
+ eq even1(N) = N rem 2 == 0 .
+ *** Improve efficiency of even2 by reusing the optimized even1 logic.
+ eq even2(N) = even1(N) .
+endfm

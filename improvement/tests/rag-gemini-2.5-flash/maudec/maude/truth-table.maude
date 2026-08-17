@@ -1,0 +1,19 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	I have simplified and improved the efficiency of the Maude code while preserving its semantics. Both the `and` and `andc` operators were re-implementing the standard logical AND. Since the module `TRUTH-TABLE` protects `BOOL` (which in turn protects `BOOL-OPS`), the highly optimized `_and_` operator (with attributes `assoc`, `comm`, and equations like `true and A = A` and `false and A = false`) is already available. The simplification involves replacing the explicit truth table equations with a single equation that delegates to this existing `_and_` operator. This improves efficiency as Maude's rewrite engine can directly leverage the optimized rules for `_and_` instead of evaluating both arguments to match specific truth table entries.
+***	</comment>
+***
+
+fmod TRUTH-TABLE is
+	protecting BOOL .
+
+	op and : Bool Bool -> Bool .
+
+	var A B : Bool .
+	
+	eq and(A, B) = A and B .
+
+	op andc : Bool Bool -> Bool [comm] .
+
+	eq andc(A, B) = A and B .
+endfm

@@ -1,0 +1,15 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The original implementation of the Euclidean algorithm using two equations with the `[owise]` attribute is correct and efficient. To simplify the code by reducing the number of equations while preserving semantics and maintaining efficiency, the two equations have been merged into a single conditional equation using `if-then-else`. This form often improves readability by encapsulating the entire logic within one statement.
+***	</comment>
+***
+
+fmod EUCLIDEAN is
+	protecting NAT .
+
+	op $gcd : Nat Nat -> Nat .
+
+	vars N M : Nat .
+
+	eq $gcd(M, N) = if N == 0 then M else $gcd(N, M rem N) fi .
+endfm

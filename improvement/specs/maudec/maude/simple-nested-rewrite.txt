@@ -1,0 +1,15 @@
+Write a Maude SYSTEM module (with rewrite rules) illustrating nested
+rewriting and the frozen attribute.
+
+Required interface (terms of this exact form must parse):
+- sorts Foo, Bar and Ter;
+- a constructor f taking (Bar, Foo) and returning Foo;
+- three constant constructors a b c of sort Bar;
+- a constructor g taking one Bar and returning Ter, declared FROZEN on its
+  first (and only) argument, so that no rewriting happens under g;
+- two labelled rewrite rules: one rewriting the constant a to b, one
+  rewriting b to c.
+
+Behaviour (one-step rewriting):
+- a rewrites to b, and b rewrites to c, anywhere in a term EXCEPT under the
+  frozen operator g: the term g(a) admits no rewrite at all.

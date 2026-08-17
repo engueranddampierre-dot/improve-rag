@@ -1,0 +1,23 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The provided Maude code is already quite simple and efficient for its defined functionality. The `comm` attribute on the `{_,_}` operator effectively handles the unordered nature of pairs, ensuring that `{N, M}` and `{M, N}` are treated as identical terms. The definitions of `ex1`, `ex2`, and `ex3` are direct constant assignments or simple computations, making them inherently efficient. The only minor simplification possible, without altering the operator signatures or semantics, is to explicitly define `ex2` in terms of `ex1`. Since `ex1` evaluates to `{2, 1}` and `ex2` to `{1, 2}`, and `{_,_}` is commutative, both constants represent the same unordered pair. By defining `ex2 = ex1`, we reduce a redundant literal term and make the semantic equivalence explicit in the code. This change has a negligible impact on runtime efficiency for constants but slightly reduces code verbosity and highlights the logical equivalence.
+***	</comment>
+***
+
+mod UNORDERED-PAIR is
+	protecting NAT .
+
+	sort Pair .
+
+	op {_,_} : Nat Nat -> Pair [ctor comm] .	
+
+	ops ex1 ex2 : -> Pair .
+	op ex3 : Nat Nat -> Pair .
+
+	eq ex1 = {2, 1} .
+	eq ex2 = ex1 .
+
+	var N M : Nat .
+
+	eq ex3(N, M) = {N + M, N * M} .
+endm

@@ -1,0 +1,17 @@
+***
+***	<comment from="gemma-4-31b-it">
+***
+***	</comment>
+***
+
+fmod EVEN is
+	protecting BOOL .
+	protecting NAT .
+
+	ops even1 even2 : Nat -> Bool .
+
+	var N : Nat .
+
+	eq even1(N) = N rem 2 == 0 .
+	eq even2(N) = N rem 2 == 0 .
+endfm

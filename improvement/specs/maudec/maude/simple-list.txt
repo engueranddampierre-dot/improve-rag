@@ -1,0 +1,17 @@
+Write a Maude functional module defining flat lists of letters and their
+length.
+
+Required interface (terms of this exact form must parse and reduce):
+- sorts Letter and List with Letter a subsort of List;
+- four constant constructors a b c d of sort Letter;
+- a constant nil of sort List (the empty list);
+- list concatenation written by JUXTAPOSITION (an operator __ ), declared
+  associative with identity nil, so that a b c is a valid List term;
+- length : List -> Nat (built-in NAT module).
+
+Behaviour:
+- length(nil) = 0;
+- the length of a non-empty list is one more than the length of the list
+  without its first letter.
+
+Examples: length(nil) reduces to 0; length(a b c) reduces to 3.

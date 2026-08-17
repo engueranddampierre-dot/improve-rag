@@ -1,0 +1,10 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The original code uses two conditional rules (`crl`) which are mutually exclusive. This can be simplified and made more efficient by using a single unconditional rule (`rl`) with an `if_then_else_fi` operator in the right-hand side. This reduces the number of rules the Maude engine needs to consider for matching and avoids evaluating potentially multiple rule conditions.
+***	</comment>
+***
+
+mod COLLATZ is	protecting NAT .
+	var N : Nat .
+	rl N => if N rem 2 = 0 then N quo 2 else 3 * N + 1 fi .
+endm

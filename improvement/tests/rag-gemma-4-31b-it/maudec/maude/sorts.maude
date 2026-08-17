@@ -1,0 +1,27 @@
+***
+***	<comment from="gemma-4-31b-it">
+***
+***	</comment>
+***
+
+fmod SORTS-TEST is
+	protecting INT .
+
+	sort Foo Bar .
+	subsort Foo < Bar .
+
+	op f : -> Foo [ctor] .
+	op g : -> Bar [ctor] .
+
+	var B : Bar .
+	var I : Int .
+
+	op isFoo1 : Bar -> Bool .
+	eq isFoo1(B) = B :: Foo .
+
+	op isFoo2 : Bar -> Bool .
+	eq isFoo2(B) = B :: Foo .
+
+	op isPositive : Int -> Bool .
+	eq isPositive(I) = I :: NzNat .
+endfm

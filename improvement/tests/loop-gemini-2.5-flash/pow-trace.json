@@ -1,0 +1,27 @@
+{
+ "file": "tests/original/maudec/maude/pow.maude",
+ "model": "gemini-2.5-flash",
+ "rag": "../rag-system",
+ "n_tests": 30,
+ "iterations": [
+  {
+   "iter": 1,
+   "ok": false,
+   "autofixes": [],
+   "feedback": "Maude failed to load the module. Parser output:\n\u001b[31mWarning: \u001b[0m<standard input>, line 1 (fmod MAIN): bad token \u001b[35m%\u001b[0m.\n\u001b[31mWarning: \u001b[0m<standard input>, line 1 (fmod MAIN): no parse for statement\neq f (X, s N) = if (s N) % 2 == 0 then f (X * X, (s N) / 2) else X * f (X * X, (s N) / 2) fi ."
+  },
+  {
+   "iter": 2,
+   "ok": false,
+   "autofixes": [],
+   "feedback": "Maude failed to load the module. Parser output:\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 13 (fmod MAIN): bad token \u001b[35misEven\u001b[0m.\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 13 (fmod MAIN): no parse for statement\neq isEven (0) = true .\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 14 (fmod MAIN): bad token \u001b[35misEven\u001b[0m.\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 14 (fmod MAIN): no parse for statement\neq isEven (s (0)) = false .\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 15 (fmod MAIN): bad token \u001b[35misEven\u001b[0m.\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 15 (fmod MAIN): no parse for statement\neq isEven (s (s (M))) = isEven (M) .\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 21 (fmod MAIN): bad token \u001b[35mOriginal\u001b[0m.\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 19 (fmod MAIN): no parse for statement\neq half (s (s (M))) = s (half (M)) . (* Original f definitions, adapted for Maude's Nat operations *) eq f (X, 0) = 1 .\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 23 (fmod MAIN): bad token \u001b[35misEven\u001b[0m.\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 23 (fmod MAIN): no parse for statement\neq f (X, s N) = if isEven (s N) then f (X * X, half (s N)) else X * f (X * X, half (s N)) fi ."
+  },
+  {
+   "iter": 3,
+   "ok": true,
+   "autofixes": [],
+   "feedback": null
+  }
+ ],
+ "final": "ok"
+}

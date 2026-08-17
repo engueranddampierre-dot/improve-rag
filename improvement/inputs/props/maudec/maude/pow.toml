@@ -1,0 +1,18 @@
+# f(x, k) = x^k : identites independantes de l'implementation
+[[prop]]
+name  = "pow_zero"
+left  = "f({X}, 0)"
+right = "1"
+count = 4
+[prop.vars]
+X = "nat"
+
+[[prop]]
+name  = "pow_additif"          # x^(m+n) == x^m * x^n
+left  = "f({X}, {M} + {N})"
+right = "f({X}, {M}) * f({X}, {N})"
+count = 10
+[prop.vars]
+X = "nat"
+M = "nat"
+N = "nat"

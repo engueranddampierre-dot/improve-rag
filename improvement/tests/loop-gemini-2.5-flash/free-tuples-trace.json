@@ -1,0 +1,21 @@
+{
+ "file": "tests/original/maudec/maude/free-tuples.maude",
+ "model": "gemini-2.5-flash",
+ "rag": "../rag-system",
+ "n_tests": 3,
+ "iterations": [
+  {
+   "iter": 1,
+   "ok": false,
+   "autofixes": [],
+   "feedback": "Maude failed to load the module. Parser output:\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 14 (fmod TUPLES): bad token \u001b[35m_\u001b[0m.\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 14 (fmod TUPLES): no parse for statement\neq first (f (F1, _)) = F1 .\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 15 (fmod TUPLES): bad token \u001b[35m_\u001b[0m.\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 15 (fmod TUPLES): no parse for statement\neq first (g (F1, _, _)) = F1 .\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 16 (fmod TUPLES): bad token \u001b[35m_\u001b[0m.\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 16 (fmod TUPLES): no parse for statement\neq first (h (F1, _, _, _)) = F1 ."
+  },
+  {
+   "iter": 2,
+   "ok": true,
+   "autofixes": [],
+   "feedback": null
+  }
+ ],
+ "final": "ok"
+}

@@ -1,0 +1,21 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The module is improved for efficiency by converting it from a system module (mod) to a functional module (fmod), as it only contains equations. Redundancy in the definitions of ex1 and ex2 is simplified by referencing the same term modulo commutativity, and variable declarations are unified using the 'vars' keyword for conciseness.
+***	</comment>
+***
+
+fmod UNORDERED-PAIR is
+  protecting NAT .
+
+  sort Pair .
+  op {_,_} : Nat Nat -> Pair [ctor comm] .
+
+  ops ex1 ex2 : -> Pair .
+  op ex3 : Nat Nat -> Pair .
+
+  vars N M : Nat .
+
+  eq ex1 = {1, 2} .
+  eq ex2 = ex1 .
+  eq ex3(N, M) = {N + M, N * M} .
+endfm

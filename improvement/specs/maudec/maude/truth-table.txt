@@ -1,0 +1,15 @@
+Write a Maude functional module defining logical conjunction by explicit
+truth tables (built-in BOOL module).
+
+Required interface (terms of this exact form must parse and reduce):
+- an operator and taking two Bool arguments and returning a Bool, defined
+  by its COMPLETE truth table: one equation per combination of true/false
+  (four equations);
+- an operator andc taking two Bool arguments and returning a Bool, declared
+  COMMUTATIVE (the comm attribute), defined with the MINIMAL number of
+  equations that commutativity allows (the mixed case needs only one).
+
+Behaviour: both operators compute standard logical conjunction.
+
+Examples: and(true, false) reduces to false; andc(false, true) to false;
+andc(true, true) to true.

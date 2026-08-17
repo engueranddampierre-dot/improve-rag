@@ -1,0 +1,31 @@
+***
+***	<comment from="gemini-2.5-flash" via="repair-loop">
+***	To improve efficiency, the `normalize` operation was refactored to avoid recomputing the norm of the vector. A helper operation `normalize-aux` was introduced to calculate the norm once and pass it as an argument, preventing redundant `sqrt` and multiplication operations in the `then` branch of the conditional statement. The original function signature for `normalize` remains unchanged, and the semantics are preserved.
+***	</comment>
+***
+
+fmod REPEATED is
+	protecting FLOAT .
+
+	sort Vector .
+
+	op <_,_> : Float Float -> Vector [ctor] .
+
+	op norm : Vector -> Float .
+	op normalize : Vector -> Vector .
+	op normalize-aux : Vector Float -> Vector .
+
+	vars X Y : Float .
+	var N : Float .
+
+	eq norm(< X, Y >) = sqrt(X * X + Y * Y) .
+
+	eq normalize(< X, Y >) = normalize-aux(< X, Y >, norm(< X, Y >)) .
+
+	eq normalize-aux(< X, Y >, N) =
+		if N =/= 0.0 then
+			< X / N, Y / N >
+		else
+			< X, Y >
+		fi .
+endfm

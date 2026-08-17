@@ -1,0 +1,32 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	I have simplified and improved the efficiency of the `$gcd` and `even2` functions by leveraging Maude's built-in optimized operators. The `fib` and `_!` functions are kept as their current recursive definitions are standard and use Maude's efficient built-in arithmetic, offering no further simplification or efficiency gains under the given constraints.
+***
+***	Changes:
+***	- `$gcd`: Replaced the explicit Euclidean algorithm with a direct call to Maude's highly optimized built-in `gcd` operator.
+***	- `even2`: Simplified the Peano-style recursive definition to a direct call to `even1`, which uses the efficient `rem` operator. This greatly improves performance for larger numbers.
+***	</comment>
+***
+
+fmod NAT-FUNS is
+ pr NAT .
+
+ vars N M : Nat .
+
+ op fib : Nat -> Nat .
+ eq fib(0) = 0 .
+ eq fib(1) = 1 .
+ eq fib(s(s(N))) = fib(s(N)) + fib(N) .
+
+ op _! : Nat -> Nat .
+ eq 0 ! = 1 .
+ eq (s(N)) ! = s(N) * (N !) .
+
+ *** Greatest common divisor (Euclidean algorithm)
+ op $gcd : Nat Nat -> Nat .
+ eq $gcd(M, N) = gcd(M, N) .
+
+ ops even1 even2 : Nat -> Bool .
+ eq even1(N) = N rem 2 == 0 .
+ eq even2(N) = even1(N) .
+endfm

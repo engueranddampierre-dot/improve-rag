@@ -1,0 +1,12 @@
+Write a Maude functional module computing the minimum of two natural numbers.
+
+Required interface (terms of this exact form must parse and reduce):
+- an operator minimum taking two Nat arguments and returning a Nat, declared
+  COMMUTATIVE (the comm attribute), based on the built-in NAT module.
+
+Behaviour:
+- minimum(m, n) reduces to the smaller of the two numbers.
+- Commutativity must be declared as an equational attribute of the operator,
+  not encoded through extra equations.
+
+Examples: minimum(3, 7) reduces to 3; minimum(7, 3) reduces to 3.

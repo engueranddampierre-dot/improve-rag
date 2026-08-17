@@ -1,0 +1,37 @@
+***
+***	<comment from="gemma-4-31b-it">
+***	To simplify and improve the efficiency of the code, we can replace the explicit enumeration of every possible combination of truth values with **pattern matching using variables**.
+***
+***	In Maude, the most efficient way to implement a logical AND is to use the "short-circuit" logic: if the first argument is `false`, the result is always `false` regardless of the second argument.
+***
+***	Here is the optimized code:
+***
+***
+***	### Key Improvements Made:
+***
+***	1.  **Reduced Rule Count for `and`**:
+***	    *   Original: 4 rules (one for every possible combination).
+***	    *   Improved: 2 rules.
+***	    *   **Logic**: `and(false, X) = false` handles both `(false, true)` and `(false, false)`. `and(true, X) = X` simply returns the value of the second argument, effectively handling `(true, true) \to true` and `(true, false) \to false`.
+***
+***	2.  **Eliminated Redundancy for `andc`**:
+***	    *   Original: 3 rules.
+***	    *   Improved: 1 rule.
+***	    *   **Logic**: Since `andc` and `and` share the exact same truth table, we can simply define `andc(X, Y)` as `and(X, Y)`. Because `andc` is marked as `[comm]` (commutative), Maude's rewriting engine handles the argument symmetry automatically before applying the rule.
+***
+***	3.  **Performance**:
+***	    *   The reduction in the number of equations reduces the size of the search space for the Maude evaluator, leading to faster unification and rewriting.
+***	    *   The use of variables (`X`, `Y`) makes the module more idiomatic and concise.
+***	</comment>
+***
+
+fmod TRUTH-TABLE is
+	protecting BOOL .
+
+	op and : Bool Bool -> Bool .
+	eq and(false, X) = false .
+	eq and(true, X) = X .
+
+	op andc : Bool Bool -> Bool [comm] .
+	eq andc(X, Y) = and(X, Y) .
+endfm

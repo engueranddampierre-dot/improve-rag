@@ -1,0 +1,14 @@
+Write a Maude functional module testing whether a natural number is even,
+in two independent ways.
+
+Required interface (terms of this exact form must parse and reduce):
+- two operators even1 and even2, each taking one Nat and returning a Bool,
+  based on the built-in NAT and BOOL modules.
+
+Behaviour:
+- even1(n) and even2(n) both reduce to true when n is even, false when odd.
+- even1 must decide using arithmetic on n (e.g. divisibility by 2).
+- even2 must decide by structural recursion on n, descending two units at a
+  time with base cases for 0 and 1.
+
+Examples: even1(4) and even2(4) reduce to true; even1(7) and even2(7) to false.

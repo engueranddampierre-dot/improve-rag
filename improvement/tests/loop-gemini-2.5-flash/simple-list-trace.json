@@ -1,0 +1,29 @@
+{
+ "file": "tests/original/maudec/maude/simple-list.maude",
+ "model": "gemini-2.5-flash",
+ "rag": "../rag-system",
+ "n_tests": 5,
+ "iterations": [
+  {
+   "iter": 1,
+   "ok": false,
+   "autofixes": [
+    "caractere Unicode RIGHT SINGLE QUOTATION MARK remplace par \"'\""
+   ],
+   "feedback": "Static check (linter):\n- ligne 18 [fatal] : commentaire `--` : Maude n'accepte que `***` ou `---`\n- ligne 25 [fatal] : commentaire `--` : Maude n'accepte que `***` ou `---`"
+  },
+  {
+   "iter": 2,
+   "ok": false,
+   "autofixes": [],
+   "feedback": "Maude failed to load the module. Parser output:\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 27 (fmod LIST-CONS): bad token \u001b[35mAcc\u001b[0m.\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 27 (fmod LIST-CONS): no parse for statement\neq reverse-aux ([], Acc) = Acc .\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 28 (fmod LIST-CONS): bad token \u001b[35mAcc\u001b[0m.\n\u001b[31mWarning: \u001b[0m\"candidate.maude\", line 28 (fmod LIST-CONS): no parse for statement\neq reverse-aux (E : L, Acc) = reverse-aux (L, E : Acc) .\n\nLinter warnings (possibly related):\n- ligne 27 [warning] : identifiant Acc utilise dans une equation/regle sans etre declare (ni var, ni op, ni sort) \u2014 si c'est une variable, la declarer ou ecrire Acc:Sorte\n- ligne 28 [warning] : identifiant Acc utilise dans une equation/regle sans etre declare (ni var, ni op, ni sort) \u2014 si c'est une variable, la declarer ou ecrire Acc:Sorte"
+  },
+  {
+   "iter": 3,
+   "ok": false,
+   "autofixes": [],
+   "feedback": "The module loads, but differential tests FAILED:\n- term `length(nil)` : expected `0`, got `None`\n- term `length(a)` : expected `s_(0)`, got `None`\n- term `length(a b c)` : expected `s_^3(0)`, got `None`"
+  }
+ ],
+ "final": "failed"
+}

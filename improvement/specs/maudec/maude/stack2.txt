@@ -1,0 +1,21 @@
+Write a Maude PARAMETERIZED functional module implementing stacks over an
+arbitrary element theory, plus an instantiation to natural numbers extended
+with three stack-transforming operations.
+
+Required interface, part 1 — parameterized stack (as in a classic STACK
+module over the trivial theory TRIV, parameter X):
+- sort Stack{X}; constructors mt (empty stack) and push(element, stack);
+- pop (pop of empty is empty), top (partial, last pushed element),
+  empty? (true exactly on mt).
+
+Required interface, part 2 — a module instantiating the stack with Nat and
+adding (terms of this exact form must parse and reduce):
+- topIncr : Stack{Nat} -> Stack{Nat}, incrementing only the top element
+  (empty stack unchanged);
+- incr : Stack{Nat} -> Stack{Nat}, incrementing every element;
+- merge : Stack{Nat} -> Stack{Nat}, replacing the top TWO elements by their
+  sum; a stack with fewer than two elements is returned unchanged.
+
+Examples: topIncr(push(1, push(2, mt))) reduces to push(2, push(2, mt));
+incr(push(1, push(2, mt))) to push(2, push(3, mt));
+merge(push(1, push(2, mt))) to push(3, mt).

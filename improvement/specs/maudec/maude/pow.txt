@@ -1,0 +1,11 @@
+Write a Maude functional module implementing natural-number exponentiation.
+
+Required interface (terms of this exact form must parse and reduce):
+- an operator f taking two Nat arguments and returning a Nat, such that
+  f(x, k) computes x raised to the power k, using the built-in NAT module.
+
+Behaviour:
+- f(x, 0) = 1 for every x (including x = 0).
+- f(x, k) = x * x * ... * x (k factors) for k > 0.
+
+Example: f(2, 3) reduces to 8.

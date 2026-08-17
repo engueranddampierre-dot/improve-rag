@@ -1,0 +1,19 @@
+***
+***	<comment from="gemma-4-31b-it">
+***
+***	</comment>
+***
+
+fmod MAIN is
+	protecting INT .
+
+	op f : Nat Nat -> Nat .
+
+	vars X N : Nat .
+
+	eq f(X, 0) = 1 .
+	eq f(X, N) = if (N / 2) * 2 < N 
+	             then X * f(X * X, N / 2) 
+	             else f(X * X, N / 2) 
+	             fi [owise] .
+endfm

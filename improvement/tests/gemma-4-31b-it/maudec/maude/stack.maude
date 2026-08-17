@@ -1,0 +1,52 @@
+***
+***	<comment from="gemma-4-31b-it">
+***	To improve the efficiency and simplify the Maude code while preserving the semantics, we should focus on **pattern matching optimization** and **correcting the parameterization syntax**.
+***
+***	In Maude, using the "don't-care" symbol (`_`) instead of named variables in equations allows the engine to avoid unnecessary variable bindings, which improves performance. Additionally, I have corrected `TRIV` (which is not a standard Maude keyword) to `SORT` and simplified `X$Elt` to `X`, as the standard way to handle sort parameters is to use the parameter name directly.
+***
+***	Here is the improved code:
+***
+***
+***	### Key Improvements Made:
+***
+***	1.  **Corrected Parameterization**:
+***	    *   Changed `X :: TRIV` to `X :: SORT`. In Maude, `SORT` is the correct keyword for a sort parameter.
+***	    *   Changed `X$Elt` to `X`. Since `X` is defined as a `SORT`, it is used directly. (If `X` were a module, you would use `X$SortName`, but for a simple generic stack, a sort parameter is more efficient).
+***
+***	2.  **Used Don't-Care Variables (`_`)**:
+***	    *   In `pop(push(_, S))`, the element being pushed is irrelevant to the result. Replacing `E` with `_` tells Maude it doesn't need to bind a value to that position.
+***	    *   In `top(push(E, _))`, the rest of the stack is irrelevant. Replacing `S` with `_` optimizes the match.
+***	    *   In `empty?(_)`, using `_` instead of `S` is cleaner and slightly more efficient for the `owise` catch-all.
+***
+***	3.  **Preserved Semantics**:
+***	    *   The behavior of `pop(mt) = mt` (returning an empty stack when popping an empty one) is preserved as per your original logic.
+***	    *   The partial function signature `~>` for `top` is maintained, ensuring it remains undefined for `mt`.
+***	    *   The constructor status `[ctor]` is maintained to ensure the system preserves the algebraic structure for rewriting.
+***
+***	### Complexity Analysis:
+***	*   **Time Complexity**: All operations (`push`, `pop`, `top`, `empty?`) remain $O(1)$.
+***	*   **Space Complexity**: The representation remains a standard linked-list style structure, $O(n)$.
+***	</comment>
+***
+
+fmod STACK{X :: SORT} is
+ sort Stack{X} .
+
+ op mt : -> Stack{X} [ctor] .
+ op push : X Stack{X} -> Stack{X} [ctor] .
+
+ op pop : Stack{X} -> Stack{X} .
+ eq pop(mt) = mt .
+ eq pop(push(_, S)) = S .
+
+ op top : Stack{X} ~> X .
+ eq top(push(E, _)) = E .
+
+ op empty? : Stack{X} -> Bool .
+ eq empty?(mt) = true .
+ eq empty?(_) = false [owise] .
+endfm
+
+fmod NAT-STACK is
+ pr STACK{Nat} .
+endfm

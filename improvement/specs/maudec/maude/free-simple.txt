@@ -1,0 +1,18 @@
+Write a Maude functional module wrapping integers and floating-point numbers
+under a single sort, with arithmetic that coerces when the kinds are mixed.
+
+Required interface (terms of this exact form must parse and reduce):
+- a sort Foo with two constructors: int taking an Int, and float taking a
+  Float, both returning Foo (built-in INT and FLOAT modules);
+- square : Foo -> Foo, squaring the wrapped number and keeping its kind;
+- isFloat : Foo -> Bool, true exactly on float-wrapped values;
+- getFloat : a PARTIAL operation from Foo to Float (defined only on
+  float-wrapped values), returning the wrapped Float;
+- nat2float : Nat -> Float, converting a natural number to the Float of the
+  same value;
+- add : Foo Foo -> Foo, adding two wrapped values: int + int gives an int,
+  any combination involving a float gives a float (converting the integer
+  side with nat2float when needed).
+
+Examples: square(int(3)) reduces to int(9); isFloat(int(1)) to false;
+add(int(2), float(1.5)) to float(3.5).

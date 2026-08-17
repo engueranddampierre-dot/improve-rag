@@ -1,0 +1,33 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The provided Maude code for a functional stack is already highly efficient and well-structured, implementing each operation (push, pop, top, empty?) in constant time (O(1) rewrite steps) with respect to the stack's size. It directly models the algebraic definition of a stack using constructors and equations, which is a canonical and optimal approach in Maude for this data structure.
+***
+***	The code is also quite simple and concise, making extensive simplification challenging without altering its fundamental functional paradigm. However, I've made one minor change in the `empty?` function. Instead of using `[owise]` for the `false` case, I've explicitly specified the `push(E, S)` pattern. While both approaches are semantically equivalent and yield similar performance in Maude, explicitly matching the constructor for non-empty stacks can sometimes be considered slightly more explicit or deterministic than relying on a catch-all `[owise]` rule.
+***	</comment>
+***
+
+fmod STACK{X :: TRIV} is
+
+ sort Stack{X} .
+
+ op mt : -> Stack{X} [ctor] .
+ op push : X$Elt Stack{X} -> Stack{X} [ctor] .
+
+ var S : Stack{X} .
+ var E : X$Elt .
+
+ op pop : Stack{X} -> Stack{X} .
+ eq pop(mt) = mt .
+ eq pop(push(E, S)) = S .
+
+ op top : Stack{X} ~> X$Elt .
+ eq top(push(E, S)) = E .
+
+ op empty? : Stack{X} -> Bool .
+ eq empty?(mt) = true .
+ eq empty?(push(E, S)) = false .
+endfm
+
+fmod NAT-STACK is
+ pr STACK{Nat} .
+endfm

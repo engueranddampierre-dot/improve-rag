@@ -1,0 +1,13 @@
+Write a Maude SYSTEM module (with rewrite rules, not equations) modelling one
+step of the Collatz process on natural numbers.
+
+Required interface:
+- no new operators: the states are the built-in Nat numbers themselves, and
+  the dynamics are given by conditional rewrite rules on a Nat variable.
+
+Behaviour (one-step rewriting):
+- an even number n may rewrite to n divided by 2 (integer division);
+- an odd number n may rewrite to 3 * n + 1.
+
+Example: the term 6 rewrites in one step to 3; the term 7 rewrites in one
+step to 22.

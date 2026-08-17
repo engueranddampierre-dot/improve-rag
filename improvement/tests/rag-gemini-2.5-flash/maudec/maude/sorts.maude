@@ -1,0 +1,27 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	I have simplified the code by replacing the `owise`-based definitions of `isFoo2` and `isPositive` with direct sort checks using the `_::_<Sort>` operator. This approach leverages Maude's built-in sort checking capabilities, which is generally more efficient and concise than using separate equations with the `owise` attribute to achieve the same semantic effect. The `isFoo1` function already uses this efficient approach, so it remains unchanged.
+***	</comment>
+***
+
+fmod SORTS-TEST is
+	protecting INT .
+
+	sort Foo Bar .
+	subsort Foo < Bar .
+
+	op f : -> Foo [ctor] .
+	op g : -> Bar [ctor] .
+
+	var B : Bar .
+	var I : Int .
+
+	op isFoo1 : Bar -> Bool .
+	eq isFoo1(B) = B :: Foo .
+
+	op isFoo2 : Bar -> Bool .
+	eq isFoo2(B) = B :: Foo .
+
+	op isPositive : Int -> Bool .
+	eq isPositive(I) = I :: NzNat .
+endfm

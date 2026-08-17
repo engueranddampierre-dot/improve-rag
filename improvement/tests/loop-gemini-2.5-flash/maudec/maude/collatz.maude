@@ -1,0 +1,17 @@
+***
+***	<comment from="gemini-2.5-flash" via="repair-loop">
+***	The previous code was rejected because `=` is not a Boolean operator in `if_then_else_fi` terms; `==` should be used instead. However, the checker also noted that `=` is legal in the conditions of `ceq`/`crl` statements. Following the reminder to preserve semantics and guided by the provided example structure, the code has been refactored into two conditional rewrite rules (`crl`), where the `=` operator is correctly used in the `if` conditions.
+***	</comment>
+***
+
+mod COLLATZ is
+	protecting NAT .
+
+	*** Collatz conjecture
+	*** (no one has proven that this sequence is always terminating)
+
+	var N : Nat .
+
+	crl N => N quo 2 if N rem 2 = 0 .
+	crl N => 3 * N + 1 if N rem 2 = 1 .
+endm

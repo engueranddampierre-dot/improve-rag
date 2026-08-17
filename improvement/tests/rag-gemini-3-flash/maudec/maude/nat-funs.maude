@@ -1,0 +1,28 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	I have significantly optimized the Fibonacci function by replacing the exponential-time recursive definition with a linear-time tail-recursive implementation using a helper function ($fib). I also replaced the manual Euclidean algorithm in $gcd with a direct call to the built-in, C++ optimized 'gcd' operator from the NAT module. For the 'even1' and 'even2' functions, I utilized the built-in '_divides_' operator, which is more efficient than manual recursion or remainder checks. Finally, I simplified the syntax by following idiomatic Maude conventions, such as using 's N' instead of 's(N)' and removing redundant parentheses and comments.
+***	</comment>
+***
+
+fmod NAT-FUNS is
+  pr NAT .
+
+  vars N M K : Nat .
+
+  op fib : Nat -> Nat .
+  op $fib : Nat Nat Nat -> Nat .
+  eq fib(N) = $fib(N, 0, 1) .
+  eq $fib(0, M, K) = M .
+  eq $fib(s N, M, K) = $fib(N, K, M + K) .
+
+  op _! : Nat -> Nat .
+  eq 0 ! = 1 .
+  eq (s N) ! = (s N) * N ! .
+
+  op $gcd : Nat Nat -> Nat .
+  eq $gcd(M, N) = gcd(M, N) .
+
+  ops even1 even2 : Nat -> Bool .
+  eq even1(N) = 2 divides N .
+  eq even2(N) = 2 divides N .
+endfm

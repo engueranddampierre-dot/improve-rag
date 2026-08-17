@@ -1,0 +1,13 @@
+Write a Maude functional module with two mutually recursive functions on
+natural numbers.
+
+Required interface (terms of this exact form must parse and reduce):
+- two operators f and g, each taking one Nat and returning a Nat, based on
+  the built-in NAT module.
+
+Behaviour:
+- f(0) = 1.
+- f(n + 1) = 2 + g(n).
+- g(n) = 1 + f(n) for every n.
+
+Examples: f(0) reduces to 1; g(0) reduces to 2; f(1) reduces to 4.

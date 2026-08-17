@@ -1,0 +1,42 @@
+***
+***	<comment from="gemma-4-31b-it">
+***	To improve the efficiency of the Maude code while preserving the semantics (the mapping of inputs to outputs), the best approach is to remove the commutativity attribute `[comm]` and replace it with an explicit fallback equation.
+***
+***	### Optimized Code
+***
+***
+***	### Improvements and Explanations
+***
+***	#### 1. Removal of `[comm]` (AC-Unification Overhead)
+***	In the original code, `minimum` is marked as commutative. When Maude encounters a term like `minimum(5, 2)`, it first checks if $5 \le 2$. When that fails, the AC-unification engine searches for permutations of the arguments to see if another arrangement (like `minimum(2, 5)`) satisfies the condition.
+***
+***	While AC-unification is powerful, it introduces computational overhead. For a simple binary operator, it is significantly more efficient to use explicit equations than to rely on the AC-matcher to "swap" arguments.
+***
+***	#### 2. Introduction of the Fallback Equation
+***	By removing `[comm]`, we must explicitly handle the case where $M > N$.
+***	*   **The first rule** (`ceq`) handles the case where $M$ is the minimum (including when $M = N$).
+***	*   **The second rule** (`eq`) acts as a "catch-all." If the first conditional equation fails, it logically implies that $N$ must be the minimum.
+***
+***	Using a simple `eq` for the second case is faster than using another `ceq` (e.g., `if N < M`) because it avoids an additional predicate evaluation.
+***
+***	### Efficiency Comparison
+***
+***	| Feature | Original Implementation | Improved Implementation |
+***	| :--- | :--- | :--- |
+***	| **Matching** | AC-Matching (checks permutations) | Simple Pattern Matching |
+***	| **Logic Path** | Match $\to$ Check $\to$ Permute $\to$ Check | Match $\to$ Check $\to$ Fallback |
+***	| **Complexity** | Higher overhead due to AC-engine | Minimal overhead; direct execution |
+***	| **Semantics** | Result is correct | Result is identical |
+***	</comment>
+***
+
+fmod MINIMUM is
+	protecting NAT .
+
+	op minimum : Nat Nat -> Nat .
+
+	vars M N : Nat .
+
+	ceq minimum(M, N) = M if M <= N .
+	eq minimum(M, N) = N .
+endfm

@@ -1,0 +1,21 @@
+{
+ "file": "tests/original/maudec/maude/collatz.maude",
+ "model": "gemini-2.5-flash",
+ "rag": "../rag-system",
+ "n_tests": 0,
+ "iterations": [
+  {
+   "iter": 1,
+   "ok": false,
+   "autofixes": [],
+   "feedback": "Static check (linter):\n- ligne 9 [fatal] : `=` dans un terme if_then_else_fi : `=` n'est pas un operateur Bool ; utiliser `==` (l'egalite `cond = val` n'est legale que dans les conditions de ceq/crl, pas dans un terme)"
+  },
+  {
+   "iter": 2,
+   "ok": true,
+   "autofixes": [],
+   "feedback": null
+  }
+ ],
+ "final": "ok"
+}

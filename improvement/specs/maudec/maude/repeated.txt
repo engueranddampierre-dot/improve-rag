@@ -1,0 +1,16 @@
+Write a Maude functional module normalizing two-dimensional vectors of
+floating-point numbers.
+
+Required interface (terms of this exact form must parse and reduce):
+- a sort Vector with a constructor written < _ , _ > taking two Float
+  arguments (so that < 3.0, 4.0 > is a valid term; built-in FLOAT module);
+- norm : Vector -> Float, the Euclidean norm (square root of the sum of
+  squares);
+- normalize : Vector -> Vector.
+
+Behaviour:
+- normalize divides both components by the norm of the vector;
+- the zero vector (norm equal to 0.0) is returned unchanged.
+
+Examples: norm(< 3.0, 4.0 >) reduces to 5.0;
+normalize(< 3.0, 4.0 >) reduces to < 0.6, 0.8 >.

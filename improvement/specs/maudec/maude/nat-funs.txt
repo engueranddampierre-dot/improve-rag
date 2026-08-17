@@ -1,0 +1,16 @@
+Write a single Maude functional module gathering classic functions on
+natural numbers (built-in NAT and BOOL modules).
+
+Required interface (terms of this exact form must parse and reduce):
+- fib : Nat -> Nat, the Fibonacci sequence with fib(0) = 0 and fib(1) = 1;
+- a POSTFIX factorial operator written _! (so that 4 ! is a valid term),
+  from Nat to Nat, with 0 ! = 1;
+- $gcd (with the leading dollar sign) : Nat Nat -> Nat, the greatest common
+  divisor by the Euclidean algorithm ($gcd(m, 0) = m, otherwise recurse on
+  the remainder);
+- even1 and even2 : Nat -> Bool, both deciding evenness: even1 by an
+  arithmetic test, even2 by structural recursion descending two units at a
+  time with base cases 0 and 1.
+
+Examples: fib(7) reduces to 13; 4 ! reduces to 24; $gcd(12, 8) to 4;
+even1(4) and even2(4) to true.

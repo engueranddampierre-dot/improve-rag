@@ -1,0 +1,15 @@
+{
+ "file": "tests/original/maudec/maude/repeated.maude",
+ "model": "gemini-2.5-flash",
+ "rag": "../rag-system",
+ "n_tests": 6,
+ "iterations": [
+  {
+   "iter": 1,
+   "ok": true,
+   "autofixes": [],
+   "feedback": null
+  }
+ ],
+ "final": "ok"
+}

@@ -1,0 +1,26 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The provided Maude code defines the `first` operation to extract the first `Float` argument from different `Foo` constructors. While the existing implementation is clear and efficient in terms of direct pattern matching, we can simplify the variable declarations and improve readability by using common 'ignore' variables for parts of the pattern that are not used in the right-hand side of the equations. This reduces the number of distinct variable names required in the `vars` declarations, making the code slightly more concise and clearer about the intent of unused pattern variables.
+***
+***	The original implementation uses `F1`, `F2`, `B1`, `B2` as distinct variable names. By introducing `F-val` for the extracted value and `F-ignore` and `B-ignore` for values that are matched but not used, we reduce the total number of distinct variable declarations.
+***	</comment>
+***
+
+fmod TUPLES is
+	protecting FLOAT .
+
+	sort Foo .
+
+	op f : Float Float -> Foo [ctor] .
+	op g : Float Float Bool -> Foo [ctor] .
+	op h : Float Bool Float Bool -> Foo [ctor] .
+
+	op first : Foo -> Float .
+
+	vars F-val F-ignore : Float .
+	vars B-ignore : Bool .
+
+	eq first(f(F-val, F-ignore)) = F-val .
+	eq first(g(F-val, F-ignore, B-ignore)) = F-val .
+	eq first(h(F-val, B-ignore, F-ignore, B-ignore)) = F-val .
+endfm

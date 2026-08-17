@@ -1,0 +1,8 @@
+# pip install torch --index-url https://download.pytorch.org/whl/cpu avant les requirements
+requests==2.34.0
+beautifulsoup4==4.14.3
+python-dotenv==1.2.2
+qdrant-client==1.18.0
+sentence-transformers==5.5.0
+fastembed
+google-genai

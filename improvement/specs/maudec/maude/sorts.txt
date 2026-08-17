@@ -1,0 +1,17 @@
+Write a Maude functional module illustrating subsorting and sort-membership
+tests.
+
+Required interface (terms of this exact form must parse and reduce):
+- sorts Foo and Bar with Foo a subsort of Bar;
+- constant constructors f of sort Foo and g of sort Bar;
+- isFoo1 : Bar -> Bool, deciding with Maude's built-in sort-membership test
+  whether its argument belongs to sort Foo;
+- isFoo2 : Bar -> Bool, deciding the same property WITHOUT the membership
+  test, by pattern-matching on the argument sort (with a default case);
+- isPositive : Int -> Bool, true exactly on strictly positive integers,
+  decided by matching on the argument's sort within the built-in INT sort
+  hierarchy (non-zero naturals versus the rest), not by an arithmetic
+  comparison.
+
+Examples: isFoo1(f) and isFoo2(f) reduce to true; isFoo1(g) and isFoo2(g)
+to false; isPositive(3) to true; isPositive(-3) and isPositive(0) to false.

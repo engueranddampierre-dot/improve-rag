@@ -1,0 +1,12 @@
+Write a Maude functional module computing the greatest common divisor of two
+natural numbers with the Euclidean algorithm.
+
+Required interface (terms of this exact form must parse and reduce):
+- an operator named $gcd (with the leading dollar sign) taking two Nat
+  arguments and returning a Nat, based on the built-in NAT module.
+
+Behaviour:
+- $gcd(m, 0) = m.
+- otherwise $gcd(m, n) is the gcd of n and the remainder of m divided by n.
+
+Examples: $gcd(12, 8) reduces to 4; $gcd(0, 5) reduces to 5.

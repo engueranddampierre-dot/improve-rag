@@ -1,0 +1,32 @@
+***
+***	<comment from="gemini-2.5-flash" via="repair-loop">
+***	The previous code failed to load because the Maude parser was likely misinterpreting statement boundaries, especially when comments followed a period (`.`) on the same line or closely across lines. It also reported `isEven` as a bad token, suggesting its operator declaration was not correctly processed. This fix addresses these issues by:
+***	1.  Ensuring all operator (`op`) declarations are grouped together at the beginning of the module, before any variable (`vars`) declarations or equations (`eq`). This makes it clear to the parser what operators exist.
+***	2.  Removing the redundant `protecting BOOL .` as `protecting INT .` already makes `Bool` available.
+***	3.  Ensuring each `eq` statement is clearly terminated by a period on its own line, and comments are placed on separate lines or at the very end of a statement to prevent the parser from concatenating multiple lines into a single, invalid statement.
+***	</comment>
+***
+
+fmod MAIN is
+	protecting INT .
+
+	op f : Nat Nat -> Nat .
+	op isEven : Nat -> Bool .
+	op half : Nat -> Nat .
+
+	vars X N M : Nat .
+
+	eq isEven(0) = true .
+	eq isEven(s(0)) = false .
+	eq isEven(s(s(M))) = isEven(M) .
+
+	eq half(0) = 0 .
+	eq half(s(0)) = 0 .
+	eq half(s(s(M))) = s(half(M)) .
+
+	eq f(X, 0) = 1 .
+	eq f(X, s N) = if isEven(s N)
+	                then f(X * X, half(s N))
+	                else X * f(X * X, half(s N))
+	                fi .
+endfm

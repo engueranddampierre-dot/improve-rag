@@ -1,0 +1,17 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The original code computes exponentiation `X^N` recursively in a linear number of steps (N steps). This improved version implements binary exponentiation, reducing the number of multiplications to a logarithmic number of steps (log N steps). It achieves this by recognizing if the exponent `N` is even or odd using pattern matching with addition, and then applying the rules `X^N = (X^2)^(N/2)` for even `N` and `X^N = X * (X^2)^((N-1)/2)` for odd `N`. The `[owise]` attribute ensures that the rule for even numbers is applied only if the more specific rule for odd numbers (and the base case for 0) does not match.
+***	</comment>
+***
+
+fmod MAIN is
+	protecting INT .
+
+	op f : Nat Nat -> Nat .
+
+	vars X K : Nat .
+
+	eq f(X, 0) = 1 .
+	eq f(X, K + K + s 0) = X * f(X * X, K) .
+	eq f(X, K + K) = f(X * X, K) [owise] .
+endfm

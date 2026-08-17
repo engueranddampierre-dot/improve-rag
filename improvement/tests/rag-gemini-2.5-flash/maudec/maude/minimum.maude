@@ -1,0 +1,15 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	I have simplified and improved the efficiency of the `minimum` operator by using a single unconditional equation with an `if_then_else_fi` expression. This approach makes the definition more direct and avoids relying on the `comm` attribute for the logical outcome, which can lead to more efficient rewriting. The original function signature, including the `[comm]` attribute, has been preserved as requested.
+***	</comment>
+***
+
+fmod MINIMUM is
+	protecting NAT .
+
+	op minimum : Nat Nat -> Nat [comm] .
+
+	vars M N : Nat .
+
+	eq minimum(M, N) = if M <= N then M else N fi .
+endfm

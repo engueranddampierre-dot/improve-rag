@@ -1,0 +1,17 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The original `even1` definition is already efficient and simple, so it is kept as is. The `even2` definition, which relies on recursion, is simplified and made more efficient by replacing its three equations with a single equation that directly uses the `rem` operator. This change preserves the semantics while improving performance, especially for larger natural numbers, as it avoids `N/2` rewrite steps.
+***	</comment>
+***
+
+fmod EVEN is
+	protecting BOOL .
+	protecting NAT .
+
+	ops even1 even2 : Nat -> Bool .
+
+	var N : Nat .
+
+	eq even1(N) = N rem 2 == 0 .
+	eq even2(N) = N rem 2 == 0 .
+endfm

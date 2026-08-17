@@ -3,8 +3,18 @@ import json
 from pathlib import Path
 import requests
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'rag-system'))
-from rag.builder_code import retrieve_maude_context
+def charger_rag(rag: str):
+	"""Importe retrieve_maude_context depuis le RAG choisi (--rag), ou None.
+	Valeurs : rag-system (defaut), maude-rag-hybrid, maude-rag-sections, none."""
+	if rag in (None, 'none'):
+		return None
+	rag = rag.removeprefix('../')
+	sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', rag))
+	from rag.builder_code import retrieve_maude_context
+	return retrieve_maude_context
+
+# initialise dans __main__ selon --rag ; par defaut le baseline, comme avant
+retrieve_maude_context = None
 
 # Schema for the answer
 MAIN_SCHEMA = {
@@ -43,11 +53,13 @@ class Gemini:
 		
 		base = f'Please, simplify and improve the efficiency of the following {lang} code while preserving the semantics. Keep the original function signatures, but change the implementation as needed.'
     
-		if lang == 'Maude':
+		if lang == 'Maude' and retrieve_maude_context:
 			context = retrieve_maude_context(code)
-			# imported rag from builder_code.py
+			# imported rag from builder_code.py (selon --rag)
 			rag_block = f'\n\nThe following excerpts from the Maude manual document the constructs used. Use them as the authoritative reference for Maude syntax. Do NOT introduce notation that does not appear in these excerpts or the original code.\n\nMAUDE MANUAL EXCERPTS:\n{context}'
-			
+		else:
+			rag_block = ""
+
 		message = f'{base}{rag_block}\n```\n{code}\n```\n'
 
 		# Ask the API
@@ -61,6 +73,55 @@ class Gemini:
 		else:
 			raise ValueError(f'API error: {answer.content}')
 
+class Gemma:
+	"""Connector to the Gemma API"""
+
+	# URL for the REST API of the Google AI
+	API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent'
+
+	def __init__(self, model: str):
+		self.session = requests.Session()
+		self.model = model
+		self.session.headers.update({'x-goog-api-key': os.environ['GEMINI_API_KEY']})
+
+	def _separate_code(self, text: str):
+		"""Separate code from explanation"""
+
+		buckets = ([], [])
+		current = 0
+
+		# Collect lines
+		for line in text.split('\n'):
+			if line.startswith('```'):
+				current = 1 - current
+			else:
+				buckets[current].append(line)
+
+		# Join lines
+		return {'comment': '\n'.join(buckets[0]), 'code': '\n'.join(buckets[1])}
+
+	def optimize(self, code: str, lang: str, raw=False):
+	
+		base = f'Please, simplify and improve the efficiency of the following {lang} code while preserving the semantics. Keep the original function signatures, but change the implementation as needed.'
+		if lang == 'Maude' and retrieve_maude_context:
+			context = retrieve_maude_context(code)
+			rag_block = f'\n\nThe following excerpts from the Maude manual document the constructs used. Use them as the authoritative reference for Maude syntax. Do NOT introduce notation that does not appear in these excerpts or the original code.\n\nMAUDE MANUAL EXCERPTS:\n{context}'
+		else:
+			rag_block = ""
+		message = f'{base}{rag_block}\n```\n{code}\n```\n'
+
+		# Ask the API
+		answer = self.session.post(self.API_URL.format(model=self.model),
+		                           json={'contents': [{'parts': [{'text': message}]}]})
+
+		if answer.status_code == 200:
+			parts = answer.json()['candidates'][0]['content']['parts']
+			text = next(p['text'] for p in reversed(parts) if not p.get('thought'))
+
+			return text if raw else self._separate_code(text)
+
+		else:
+			raise ValueError(f'API error: {answer.content}')
 
 def language(suffix: str):
 	"""Language for a given suffix"""
@@ -130,8 +191,13 @@ if __name__ == '__main__':
 	parser.add_argument('input', help='Input file', type=Path)
 	parser.add_argument('-o', help='Output JSON file', type=Path)
 	parser.add_argument('--model', '-m', help='Model to use', default='gemini-3-flash-preview')
+	parser.add_argument('--rag', help='RAG backend: rag-system, maude-rag-hybrid, maude-rag-sections or none',
+	                    default='rag-system')
 
 	args = parser.parse_args()
+
+	# Selectionne le RAG demande (les trois exposent retrieve_maude_context)
+	retrieve_maude_context = charger_rag(args.rag)
 
 	# Get the handler class for the model
 	model_handler = get_model_handler(args.model)

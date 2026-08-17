@@ -99,7 +99,8 @@ class Gemma:
 		                           json={'contents': [{'parts': [{'text': message}]}]})
 
 		if answer.status_code == 200:
-			text = answer.json()['candidates'][0]['content']['parts'][0]['text']
+			parts = answer.json()['candidates'][0]['content']['parts']
+			text = next(p['text'] for p in reversed(parts) if not p.get('thought'))
 
 			return text if raw else self._separate_code(text)
 
@@ -139,7 +140,6 @@ class Ollama:
 
 		else:
 			raise ValueError(f'API error: {answer.content}')
-
 
 def language(suffix: str):
 	"""Language for a given suffix"""

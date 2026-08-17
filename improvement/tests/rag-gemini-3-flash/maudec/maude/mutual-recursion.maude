@@ -1,0 +1,13 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	The original mutually recursive definitions for 'f' and 'g' are simplified into closed-form arithmetic expressions. By substituting 'g(N) = 1 + f(N)' into 'f(s N) = 2 + g(N)', we obtain the linear recurrence 'f(s N) = 3 + f(N)', which corresponds to the arithmetic progression 'f(N) = 3 * N + 1'. Consequently, 'g(N) = 3 * N + 2'. These implementations are more efficient, as they reduce the complexity from O(N) recursive steps to O(1) arithmetic operations, while preserving the original semantics and using standard notation from the 'NAT' module.
+***	</comment>
+***
+
+fmod MUTUAL is
+	protecting NAT .
+	ops f g : Nat -> Nat .
+	var N : Nat .
+	eq f(N) = (3 * N) + 1 .
+	eq g(N) = (3 * N) + 2 .
+endfm

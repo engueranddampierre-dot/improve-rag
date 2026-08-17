@@ -1,0 +1,24 @@
+***
+***	<comment from="gemini-3-flash-preview">
+***	To improve efficiency and simplify the implementation, I have added the 'strat (0 1 0)' attribute to the 'first' operation. This strategy enables lazy evaluation by attempting to match the equations at the top level before evaluating the constructor arguments. In cases where the argument of 'first' is already a constructor (e.g., f, g, or h), Maude will match the equation and return the first Float component without ever reducing the remaining arguments (such as the second Float in 'f' or the Boolean values in 'g' and 'h'). This preserves the original semantics while avoiding unnecessary computations. The signatures and equations are maintained to strictly adhere to the original constructor definitions.
+***	</comment>
+***
+
+fmod TUPLES is
+	protecting FLOAT .
+
+	sort Foo .
+
+	op f : Float Float -> Foo [ctor] .
+	op g : Float Float Bool -> Foo [ctor] .
+	op h : Float Bool Float Bool -> Foo [ctor] .
+
+	op first : Foo -> Float [strat (0 1 0)] .
+
+	vars F1 F2 : Float .
+	vars B1 B2 : Bool .
+
+	eq first(f(F1, F2)) = F1 .
+	eq first(g(F1, F2, B1)) = F1 .
+	eq first(h(F1, B1, F2, B2)) = F1 .
+endfm

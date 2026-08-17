@@ -1,0 +1,7 @@
+[
+ {"label": "smoke-echo", "rag": "none", "model": "echo", "max_iters": 1},
+ {"label": "baseline-sans-boucle", "rag": "../rag-system", "model": "gemini-2.5-flash", "max_iters": 1},
+ {"label": "baseline+boucle", "rag": "../rag-system", "model": "gemini-2.5-flash", "max_iters": 3},
+ {"label": "hybrid+boucle", "rag": "../maude-rag-hybrid", "model": "gemini-2.5-flash", "max_iters": 3},
+ {"label": "sections+boucle", "rag": "../maude-rag-sections", "model": "gemini-2.5-flash", "max_iters": 3}
+]

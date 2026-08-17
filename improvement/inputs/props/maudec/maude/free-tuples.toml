@@ -1,0 +1,32 @@
+# Projections : premiere composante quelles que soient les autres.
+# Le bug reel (pattern non-lineaire sur B-ignore) violait first_h des que
+# les deux booleens differaient.
+[[prop]]
+name  = "first_f"
+left  = "first(f({F1}, {F2}))"
+right = "{F1}"
+count = 6
+[prop.vars]
+F1 = "float"
+F2 = "float"
+
+[[prop]]
+name  = "first_g"
+left  = "first(g({F1}, {F2}, {B1}))"
+right = "{F1}"
+count = 6
+[prop.vars]
+F1 = "float"
+F2 = "float"
+B1 = "bool"
+
+[[prop]]
+name  = "first_h"
+left  = "first(h({F1}, {B1}, {F2}, {B2}))"
+right = "{F1}"
+count = 10
+[prop.vars]
+F1 = "float"
+B1 = "bool"
+F2 = "float"
+B2 = "bool"

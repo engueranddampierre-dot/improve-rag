@@ -1,0 +1,36 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The original code defines two mutually recursive functions, `f` and `g`.
+***
+***	From the definitions:
+***	1. `f(0) = 1`
+***	2. `f(s N) = 2 + g(N)`
+***	3. `g(N) = 1 + f(N)`
+***
+***	Substitute (3) into (2):
+***	`f(s N) = 2 + (1 + f(N))`
+***	`f(s N) = 3 + f(N)`
+***
+***	This simplifies `f` to a direct recurrence: `f(N) = 1 + 3 * N`. We can prove this by induction:
+***	- Base case: `f(0) = 1 + 3 * 0 = 1`, which matches the given definition.
+***	- Inductive step: Assume `f(N) = 1 + 3 * N`. Then `f(s N) = 3 + f(N) = 3 + (1 + 3 * N) = 4 + 3 * N`. Also, `1 + 3 * (s N) = 1 + 3 * (N + 1) = 1 + 3 * N + 3 = 4 + 3 * N`. Thus, the formula holds.
+***
+***	Now, substitute `f(N) = 1 + 3 * N` back into the definition for `g(N)`:
+***	`g(N) = 1 + f(N)`
+***	`g(N) = 1 + (1 + 3 * N)`
+***	`g(N) = 2 + 3 * N`
+***
+***	By replacing the recursive definitions with their closed-form expressions, the code becomes significantly more efficient as it eliminates recursive calls and reduces computations to simple arithmetic operations.
+***	</comment>
+***
+
+fmod MUTUAL is
+	protecting NAT .
+
+	ops f g : Nat -> Nat .
+
+	var N : Nat .
+
+	eq f(N) = 1 + 3 * N .
+	eq g(N) = 2 + 3 * N .
+endfm

@@ -1,0 +1,16 @@
+***
+***	<comment from="gemini-2.5-flash">
+***	The original code likely defined the general case for 'getDescription' using a conditional rule with explicit checks (e.g., 'if not (I == 'apple) and not (I == 'banana)'). This has been simplified and made more efficient by utilizing the `[owise]` attribute. The `[owise]` attribute is a standard Maude feature that specifies an equation should only apply if no other non-[owise] equation with a matching left-hand side can be applied. This eliminates the need for redundant `not` and `and` conditions, making the code more concise and potentially improving performance by allowing Maude's rewrite engine to determine the applicability of the default case more directly.
+***	</comment>
+***
+
+mod EXAMPLE-MODULE is
+  sort Qid .
+  op getDescription : Qid -> Qid .
+
+  var I : Qid .
+
+  eq getDescription('apple) = 'redFruit .
+  eq getDescription('banana) = 'yellowFruit .
+  eq getDescription(I) = 'unknownFruit [owise] .
+endm

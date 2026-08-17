@@ -1,0 +1,17 @@
+# gcd : commutativite et idempotence
+[[prop]]
+name  = "gcd_comm"
+left  = "$gcd({A}, {B})"
+right = "$gcd({B}, {A})"
+count = 10
+[prop.vars]
+A = "nat"
+B = "nat"
+
+[[prop]]
+name  = "gcd_idem"
+left  = "$gcd({A}, {A})"
+right = "{A}"
+count = 5
+[prop.vars]
+A = "nat"

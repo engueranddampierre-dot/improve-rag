@@ -1,0 +1,17 @@
+Write a Maude functional module implementing the EXTENDED Euclidean
+algorithm on integers.
+
+Required interface (terms of this exact form must parse and reduce):
+- a sort EuclidResult with a free constructor euc taking three Int
+  arguments (built-in INT module);
+- an operator eeuclid taking two Int arguments and returning a EuclidResult;
+- you may add auxiliary operators if needed.
+
+Behaviour:
+- eeuclid(m, n) reduces to euc(d, u, v) where d is the greatest common
+  divisor of m and n, and u, v are Bezout coefficients: u * m + v * n = d.
+- The coefficients must match the classical iterative extended Euclidean
+  algorithm that starts from (m, 1, 0) and (n, 0, 1) and updates both pairs
+  with the successive integer quotients.
+
+Example: eeuclid(12, 8) reduces to euc(4, 1, -1).

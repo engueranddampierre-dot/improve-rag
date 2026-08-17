@@ -1,8 +1,8 @@
-# Lancement de l'environnement virtuel :
-python -m venv .venv
+# Lancement de l'environnement virtuel (WSL/Linux) :
+python3 -m venv .venv
 # puis :
-.\.venv\Scripts\Activate.ps1
+source .venv/bin/activate
 
 # Lancement de qdrant avec docker :
-docker start qdrant
-# avec docker ouvert
+sudo docker start qdrant
+# (docker desktop doit tourner côté Windows)

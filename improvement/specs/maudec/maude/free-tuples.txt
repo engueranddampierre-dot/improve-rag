@@ -1,0 +1,17 @@
+Write a Maude functional module with several tuple-like constructors sharing
+one sort, and a projection returning the first floating-point component.
+
+Required interface (terms of this exact form must parse and reduce):
+- a sort Foo with three free constructors (built-in FLOAT module):
+    f taking (Float, Float),
+    g taking (Float, Float, Bool),
+    h taking (Float, Bool, Float, Bool);
+- first : Foo -> Float.
+
+Behaviour:
+- first returns the FIRST Float argument of whichever constructor was used,
+  for ALL possible values of the remaining arguments (the other components
+  must not influence the result in any way).
+
+Examples: first(f(1.0, 2.0)) reduces to 1.0;
+first(h(5.0, true, 6.0, false)) reduces to 5.0.

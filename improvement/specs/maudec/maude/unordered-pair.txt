@@ -1,0 +1,13 @@
+Write a Maude SYSTEM module defining unordered pairs of natural numbers.
+
+Required interface (terms of this exact form must parse and reduce):
+- a sort Pair with a constructor written { _ , _ } taking two Nat
+  arguments (so that {1, 2} is a valid term), declared COMMUTATIVE with
+  the comm attribute — {1, 2} and {2, 1} must be the SAME value;
+- two constants ex1 and ex2 of sort Pair, defined respectively as the pair
+  of 2 and 1, and the pair of 1 and 2 (they must therefore be equal);
+- ex3 : Nat Nat -> Pair, mapping (n, m) to the pair of their sum and their
+  product.
+
+Examples: ex1 and ex2 reduce to the same term; ex3(2, 3) reduces to the
+unordered pair containing 5 and 6.

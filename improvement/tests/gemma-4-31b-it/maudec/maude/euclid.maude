@@ -1,0 +1,38 @@
+***
+***	<comment from="gemma-4-31b-it">
+***	The original code you provided is already implementing the **Euclidean algorithm using the remainder operator**, which is the most efficient general-purpose method for computing the Greatest Common Divisor (GCD).
+***
+***	In Maude, since the `rem` operator is a built-in primitive of the `NAT` module (implemented in C), it is significantly faster than implementing the algorithm via repeated subtraction. The use of `[owise]` is also the correct idiomatic way to ensure the base case is checked before the recursive step, preventing infinite loops or division-by-zero errors.
+***
+***	Below is the refined version. While the logic remains the same (as it is already optimal), I have polished the formatting and ensured it adheres to the best Maude practices.
+***
+***
+***	### Efficiency & Implementation Notes:
+***
+***	1.  **Time Complexity**: This implementation runs in $O(\log(\min(M, N)))$ time. This is the theoretical optimum for the Euclidean algorithm.
+***	2.  **`rem` vs. Subtraction**: Some beginners implement GCD using `$gcd(M - N, N)$`. By using `M rem N`, we skip many subtraction steps in a single operation, which is critical when one number is significantly larger than the other.
+***	3.  **`[owise]` Usage**: The `[owise]` keyword acts as a guard. It tells the Maude rewriter: *"Only apply this rule if no previous rules (like the base case $N=0$) match."* This prevents the engine from attempting to calculate `M rem 0`, which would be undefined.
+***	4.  **Functional Module (`fmod`)**: Using `fmod` instead of `mod` is more efficient for the Maude engine because it signals that the module is purely functional (no contradictions or non-determinism), allowing for faster narrowing/matching.
+***	5.  **Space Complexity**: Maude handles arbitrary-precision integers (bignums). Because this is a tail-recursive definition, the memory footprint remains minimal.
+***
+***	**Summary of changes:**
+***	*   **Preserved Signatures**: The operator `$gcd` and the `NAT` protection remain unchanged.
+***	*   **Efficiency**: Confirmed that the remainder-based approach is the most efficient way to implement this in Maude.
+***	*   **Simplification**: Maintained the concise structure as any additional conditional checks (like `if M < N then $gcd(N, M)`) would actually slow down the execution by adding overhead to every recursive call.
+***	</comment>
+***
+
+***
+*** Optimized Euclidean algorithm
+***
+
+fmod EUCLIDEAN is
+    protecting NAT .
+
+    op $gcd : Nat Nat -> Nat .
+
+    vars M N : Nat .
+
+    eq $gcd(M, 0) = M .
+    eq $gcd(M, N) = $gcd(N, M rem N) [owise] .
+endfm

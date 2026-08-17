@@ -1,0 +1,17 @@
+Write a Maude functional module deciding whether a list of vowels is a
+palindrome.
+
+Required interface (terms of this exact form must parse and reduce):
+- sorts Symbol and List with Symbol a subsort of List;
+- five constant constructors a e i o u of sort Symbol;
+- a constant nil of sort List (the empty list);
+- list concatenation written by JUXTAPOSITION (an operator __ ), declared
+  associative with identity nil, so that a e a is a valid List term;
+- palindrome : List -> Bool.
+
+Behaviour:
+- palindrome(nil) and palindrome of a single symbol are true;
+- a list reading the same forwards and backwards is a palindrome;
+- anything else reduces to false.
+
+Examples: palindrome(a e a) reduces to true; palindrome(a e) to false.

@@ -1,0 +1,15 @@
+***
+***	<comment from="gemma-4-31b-it">
+***
+***	</comment>
+***
+
+fmod TRUTH-TABLE is
+    protecting BOOL .
+
+    op and : Bool Bool -> Bool .
+    eq and(B1, B2) = B1 and B2 .
+
+    op andc : Bool Bool -> Bool [comm] .
+    eq andc(B1, B2) = B1 and B2 .
+endfm

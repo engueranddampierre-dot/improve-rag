@@ -1,0 +1,19 @@
+Write a Maude PARAMETERIZED functional module implementing stacks over an
+arbitrary element theory, plus an instantiation to natural numbers.
+
+Required interface (terms of this exact form must parse and reduce in the
+Nat instantiation):
+- a module STACK parameterized by the trivial theory TRIV (parameter X),
+  declaring a sort Stack{X};
+- constructors: a constant mt (the empty stack) and push taking an element
+  (X$Elt) and a stack;
+- pop : Stack{X} -> Stack{X}, with pop of the empty stack equal to the
+  empty stack;
+- top : a PARTIAL operation from Stack{X} to X$Elt, defined only on
+  non-empty stacks, returning the last pushed element;
+- empty? : Stack{X} -> Bool, true exactly on the empty stack;
+- a second module instantiating the stack with Nat (so that terms like
+  top(push(3, mt)) parse and reduce).
+
+Examples: top(push(3, mt)) reduces to 3; pop(push(3, mt)) to mt;
+empty?(mt) to true.
